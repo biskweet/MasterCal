@@ -1,16 +1,25 @@
 import cors from "cors";
-import express from "express";
-import { Request, Response } from 'express'
-import { config } from "config";
+import express, { Request, Response } from "express";
 
-import * as https from "https";
-import * as fs from "fs";
+import { config } from "config";
+import { UpdateCalendars } from "~~/utils/UpdateCalendars";
+import { endpoints } from "~~/endpoints";
+
 
 const app = express();
 app.use(cors());
-app.use("/", (req: Request, res: Response) => {
+app.use('/', (req: Request, res: Response) => {
     return res.send("OK");
-})
+});
 
-app.listen(config.PORT, () => console.log(`Running api on ${ config.HOST }:${ config.PORT }/`));
+UpdateCalendars(endpoints)
+    .catch((err: any) => console.error(`Failed to download calendars : ${err}`))
 
+setInterval( () => {
+    UpdateCalendars(endpoints)
+        .catch((err: any) => {
+            console.error(`Failed to download calendars : ${err}`)
+        })
+}, 4 * 60 * 60 * 1000 /* 4h interval */);
+
+app.listen(config.PORT, () => console.log(`Running api on http://${ config.HOST }:${ config.PORT }/`));
