@@ -5,6 +5,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { endpoints } from "~~/endpoints";
 import { Endpoint } from "~~/interfaces";
+import { GetEventsFromFile } from "~~/utils/GetEventsFromFile";
 
 const ICAL = require("ical.js");
 
@@ -32,16 +33,10 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
         return res.status(400) &&
                res.send("Speciality does not exist or is not supported. Please double check.")
 
-    const calendarsDir = path.join(process.cwd(), "calendars/");
-
     const userCalendar = new ICAL.Component("vcalendar");
     coursesArray.forEach((courseCode: string) => {
-        const filename = DatabaseIndexer.index[courseCode];
-        const icaltext = fs.readFileSync(path.join(calendarsDir, filename + ".ics"), "utf-8");
-        const jcalData = ICAL.parse(icaltext);
-        const calendar = new ICAL.Component(jcalData);
-
-        const events = calendar.getAllSubcomponents("vevent");
+        const filename = DatabaseIndexer.index[courseCode] + ".ics";
+        const events = GetEventsFromFile(filename)
 
         // Add all events that matches the course code
         events.forEach((event: any) => {
@@ -51,12 +46,16 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
             if (match && match[1] == courseCode)
                 userCalendar.addSubcomponent(event);
 
-            // If no match was detected AND the current calendar is the student's speciality we add it too.
-            // It could be a relevant event (example: "M1 - Réunion rentrée générale 1" or "ATRIUM DES MÉTIERS")
+            // If no match was detected AND the current calendar is the student's speciality we add it too,
+            // it could be a relevant event (eg: "M1 - Réunion rentrée générale 1", "ATRIUM DES MÉTIERS", etc.)
             if (!match && filename == req.query.speciality)
                 userCalendar.addSubcomponent(event);
         });
-    })
+    });
+
+    // Lastly, packing up events from M1.ics/M2.ics
+    const generalMastersEvents = GetEventsFromFile(req.query.speciality.slice(0, 2) + ".ics")
+    generalMastersEvents.forEach((event: any) => userCalendar.addSubcomponent(event));
 
     res.set({ "content-type": "text/calendar; charset=utf-8" });
     return res.send(userCalendar.toString());
