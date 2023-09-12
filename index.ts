@@ -1,15 +1,16 @@
 import cors from "cors";
-import express, { Request, Response } from "express";
+import express from "express";
 
 import { config } from "config";
 import { DatabaseIndexer } from "~~/databaseindexer";
-
+import { MasterCalAPIController } from "~~/controllers/mastercalapi.controller";
+import { MasterCalMainPageController } from "~~/controllers/mastercalmainpage.controller";
 
 const app = express();
 app.use(cors());
-app.use('/', (req: Request, res: Response) => {
-    return res.send("OK");
-});
+
+app.use("/",    MasterCalMainPageController);
+app.use("/api", MasterCalAPIController);
 
 DatabaseIndexer.init()
     .then(() => {
