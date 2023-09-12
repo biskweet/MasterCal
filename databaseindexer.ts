@@ -6,7 +6,7 @@ import { config } from "~~/config";
 const ICAL = require("ical.js")
 
 class DatabaseIndexer {
-    public static index: { [code: string]: string } = {};
+    public static index: { [key: string]: string } = {};
 
     public static async init() {
         await this.repopulate();
@@ -71,7 +71,7 @@ class DatabaseIndexer {
             return event.getFirstPropertyValue("dtstart").compare(academicYearStartingDay) != -1;
         })
 
-        // Create new, clean icalendar
+        // Create new, clean icalendar with relevant events
         const filteredCal = new ICAL.Component("vcalendar");
         relevantEvents.forEach((event: any) => filteredCal.addSubcomponent(event))
 

@@ -14,6 +14,5 @@ app.use("/api", MasterCalAPIController);
 
 DatabaseIndexer.init()
     .then(() => {
-        console.log(DatabaseIndexer.index);
         app.listen(config.PORT, () => console.log(`Running api on http://${ config.HOST }:${ config.PORT }/`));
     });
