@@ -9,8 +9,8 @@ import { MasterCalMainPageController } from "~~/controllers/mastercalmainpage.co
 const app = express();
 app.use(cors());
 
-app.use("/",    MasterCalMainPageController);
-app.use("/api", MasterCalAPIController);
+app.use("/mastercal",    MasterCalMainPageController);
+app.use("/mastercal/api", MasterCalAPIController);
 
 DatabaseIndexer.init()
     .then(() => {
