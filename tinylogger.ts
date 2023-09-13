@@ -16,7 +16,7 @@ class TinyLogger {
     }
 
     private static dumpLog() {
-        fs.appendFileSync(config.logsFilename, this.logs.join('\n'));
+        fs.appendFileSync(config.logsFilename, this.logs.join('\n') + '\n');
 
         this.logs = [];
     }

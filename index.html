@@ -114,7 +114,7 @@
                 return resultInput.value = "Trop d'UE sélectionnées !";
 
             else if (checkedCourses.length > 0)
-                resultInput.value += '&' + Array.from(checkedCourses).map(checkbox => checkbox.id).join(',');
+                resultInput.value += '&courses=' + Array.from(checkedCourses).map(checkbox => checkbox.id).join(',');
 
             resultInput.style.height = resultInput.scrollHeight + "px";
         };
