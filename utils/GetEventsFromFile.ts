@@ -13,4 +13,4 @@ const GetEventsFromFile = (filename: string) => {
     return calendar.getAllSubcomponents("vevent");
 }
 
-export { GetEventsFromFile }
+export { GetEventsFromFile };

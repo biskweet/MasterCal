@@ -89,14 +89,15 @@ const endpoints = [
         route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M2_SFPN/"
     },
 
-    {
-        name: "M1_SFPN-AFTI",
-        route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M1_SFPN-AFTI/"
-    },
-    {
-        name: "M2_SFPN-AFTI",
-        route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M2_SFPN-AFTI/"
-    },
+    // These two calendars create collisions with other courses so they get commented out
+    // {
+    //     name: "M1_SFPN-AFTI",
+    //     route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M1_SFPN-AFTI/"
+    // },
+    // {
+    //     name: "M2_SFPN-AFTI",
+    //     route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M2_SFPN-AFTI/"
+    // },
 
     {
         name: "M1_STL",
