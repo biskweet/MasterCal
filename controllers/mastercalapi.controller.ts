@@ -1,20 +1,26 @@
 import { Request, Response, Router } from "express";
 import { DatabaseIndexer } from "~~/databaseindexer";
 import { config } from "~~/config";
-import * as fs from "fs";
-import * as path from "path";
 import { endpoints } from "~~/endpoints";
 import { Endpoint } from "~~/interfaces";
 import { GetEventsFromFile } from "~~/utils/GetEventsFromFile";
+import { TinyLogger } from "~~/tinylogger";
 
 const ICAL = require("ical.js");
 
 const MasterCalAPIController = Router();
 
 MasterCalAPIController.get('/', (req: Request, res: Response) => {
+    // Before anything, log the request
+    let ip = req.headers['x-forwarded-for'];
+    ip = ip instanceof Array ? ip.join(',') : ip;
+    TinyLogger.log(ip || req.socket.remoteAddress || '?.?.?.?', [ req.query.courses, req.query.speciality ].join('&'));
+
+    // Query parameters check
     if (!req.query.courses || !req.query.speciality)
         return res.status(400) && res.send("Invalid query parameters.");
 
+    // Enforce type
     req.query.courses = req.query.courses as string;
     req.query.speciality = req.query.speciality as string;
 
@@ -24,14 +30,20 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
     // Transform to uppercase string array
     const coursesArray = req.query.courses.toUpperCase().split(',');
 
-    // Ensure the courses exist and the speciality is valid
+    // Ensure there is no more than 8 courses
+    if (coursesArray.length >= 10)
+        return res.status(400) &&
+               res.send("Too many courses!");
+
+    // Ensure the speciality exists
+    if (!endpoints.some((endpoint: Endpoint) => endpoint.name == req.query.speciality))
+        return res.status(400) &&
+               res.send("Speciality does not exist or is not supported. Please double check your input.");
+
+    // Ensure all courses exist
     if (coursesArray.some((courseCode: string) => !Object.keys(DatabaseIndexer.index).includes(courseCode)))
         return res.status(400) &&
                res.send("Course not found.");
-
-    if (!endpoints.some((endpoint: Endpoint) => endpoint.name == req.query.speciality))
-        return res.status(400) &&
-               res.send("Speciality does not exist or is not supported. Please double check.")
 
     const userCalendar = new ICAL.Component("vcalendar");
     coursesArray.forEach((courseCode: string) => {
