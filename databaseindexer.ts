@@ -68,8 +68,8 @@ class DatabaseIndexer {
 
         // Only keep events belonging to the current academic year
         const relevantEvents = events.filter((event: any) => {
-            return event.getFirstPropertyValue("dtstart").compare(academicYearStartingDay) != -1;
-        })
+            return event.getFirstPropertyValue("dtend").compare(academicYearStartingDay) != -1;
+        });
 
         // Create new, clean icalendar with relevant events
         const filteredCal = new ICAL.Component("vcalendar");
