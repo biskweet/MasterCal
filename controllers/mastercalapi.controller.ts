@@ -14,15 +14,15 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
     // Before anything, log the request
     let ip = req.headers['x-forwarded-for'];
     ip = ip instanceof Array ? ip.join(',') : ip;
-    TinyLogger.log(ip || req.socket.remoteAddress || '?.?.?.?', [ req.query.courses, req.query.speciality ].join('&'));
+    TinyLogger.log(ip || req.socket.remoteAddress || '?.?.?.?', [ req.query.courses, req.query.specialty ].join('&'));
 
     // Query parameters check
-    if (!req.query.courses || !req.query.speciality)
+    if (!req.query.courses || !req.query.specialty)
         return res.status(400) && res.send("Invalid query parameters.");
 
     // Enforce type
     req.query.courses = req.query.courses as string;
-    req.query.speciality = req.query.speciality as string;
+    req.query.specialty = req.query.specialty as string;
 
     if (!config.regexValidateQueryParams.exec(req.query.courses))
         return res.status(400) && res.send("Invalid query parameters.");
@@ -35,10 +35,10 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
         return res.status(400) &&
                res.send("Too many courses!");
 
-    // Ensure the speciality exists
-    if (!endpoints.some((endpoint: Endpoint) => endpoint.name == req.query.speciality))
+    // Ensure the specialty exists
+    if (!endpoints.some((endpoint: Endpoint) => endpoint.name == req.query.specialty))
         return res.status(400) &&
-               res.send("Speciality does not exist or is not supported. Please double check your input.");
+               res.send("specialty does not exist or is not supported. Please double check your input.");
 
     // Ensure all courses exist
     if (coursesArray.some((courseCode: string) => !Object.keys(DatabaseIndexer.index).includes(courseCode)))
@@ -58,15 +58,15 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
             if (match && match[1] == courseCode)
                 userCalendar.addSubcomponent(event);
 
-            // If no match was detected AND the current calendar is the student's speciality we add it too,
+            // If no match was detected AND the current calendar is the student's specialty we add it too,
             // it could be a relevant event (eg: "M1 - Réunion rentrée générale 1", "ATRIUM DES MÉTIERS", etc.)
-            if (!match && filename == req.query.speciality)
+            if (!match && filename == req.query.specialty)
                 userCalendar.addSubcomponent(event);
         });
     });
 
     // Lastly, packing up events from M1.ics/M2.ics
-    const generalMastersEvents = GetEventsFromFile(req.query.speciality.slice(0, 2) + ".ics")
+    const generalMastersEvents = GetEventsFromFile(req.query.specialty.slice(0, 2) + ".ics")
     generalMastersEvents.forEach((event: any) => userCalendar.addSubcomponent(event));
 
     res.set({ "content-type": "text/calendar; charset=utf-8" });

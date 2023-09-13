@@ -33,7 +33,7 @@
             margin-right: 24px;
         }
 
-        .speciality-list div {
+        .specialty-list div {
             padding-top: .4em;
             padding-bottom: .4em;
         }
@@ -50,7 +50,7 @@
             margin: .5em;
         }
 
-        .courses-list div:hover, .speciality-list div:hover {
+        .courses-list div:hover, .specialty-list div:hover {
             background: #eaeaea;
             border-radius: 5px;
         }
@@ -100,13 +100,13 @@
     <script lang="js">
         const baseUrl = "https://biskweet.freeboxos.fr/mastercal/api?"
         const updateLink = () => {
-            const speciality = document.querySelector("input[type=radio]:checked");
-            document.querySelector("fieldset.courses-fieldset").disabled = !speciality;
+            const specialty = document.querySelector("input[type=radio]:checked");
+            document.querySelector("fieldset.courses-fieldset").disabled = !specialty;
 
             // Will hold the link
             const resultInput = document.querySelector("textarea");
 
-            resultInput.value = baseUrl + "speciality=" + speciality.id;
+            resultInput.value = baseUrl + "specialty=" + specialty.id;
 
             const checkedCourses = document.querySelectorAll("input[type=checkbox]:checked");
 
@@ -147,90 +147,90 @@
     </div>
     <div class="table-container">
         <form id="main-form">
-            <fieldset class="speciality-list">
+            <fieldset class="specialty-list">
                 <legend>Choisissez votre parcours</legend>
                 <div>
-                    <input type="radio" name="speciality" id="M1_ANDROIDE">
+                    <input type="radio" name="specialty" id="M1_ANDROIDE">
                     <label for="M1_ANDROIDE">M1 ANDROIDE</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M1_BIM">
+                    <input type="radio" name="specialty" id="M1_BIM">
                     <label for="M1_BIM">M1 BIM</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M1_DAC">
+                    <input type="radio" name="specialty" id="M1_DAC">
                     <label for="M1_DAC">M1 DAC</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M1_IMA">
+                    <input type="radio" name="specialty" id="M1_IMA">
                     <label for="M1_IMA">M1 IMA</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M1_IQ">
+                    <input type="radio" name="specialty" id="M1_IQ">
                     <label for="M1_IQ">M1 IQ</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M1_RES">
+                    <input type="radio" name="specialty" id="M1_RES">
                     <label for="M1_RES">M1 RES</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M1_SAR">
+                    <input type="radio" name="specialty" id="M1_SAR">
                     <label for="M1_SAR">M1 SAR</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M1_SESI">
+                    <input type="radio" name="specialty" id="M1_SESI">
                     <label for="M1_SESI">M1 SESI</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M1_SFPN">
+                    <input type="radio" name="specialty" id="M1_SFPN">
                     <label for="M1_SFPN">M1 CCA-SFPN</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M1_STL">
+                    <input type="radio" name="specialty" id="M1_STL">
                     <label for="M1_STL">M1 STL</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_ANDROIDE">
+                    <input type="radio" name="specialty" id="M2_ANDROIDE">
                     <label for="M2_ANDROIDE">M2 ANDROIDE</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_BIM">
+                    <input type="radio" name="specialty" id="M2_BIM">
                     <label for="M2_BIM">M2 BIM</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_DAC">
+                    <input type="radio" name="specialty" id="M2_DAC">
                     <label for="M2_DAC">M2 DAC</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_IMA">
+                    <input type="radio" name="specialty" id="M2_IMA">
                     <label for="M2_IMA">M2 IMA</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_IQ">
+                    <input type="radio" name="specialty" id="M2_IQ">
                     <label for="M2_IQ">M2 IQ</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_RES">
+                    <input type="radio" name="specialty" id="M2_RES">
                     <label for="M2_RES">M2 RES</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_SAR">
+                    <input type="radio" name="specialty" id="M2_SAR">
                     <label for="M2_SAR">M2 SAR</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_SESI">
+                    <input type="radio" name="specialty" id="M2_SESI">
                     <label for="M2_SESI">M2 SESI</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_SFPN-AFTI">
+                    <input type="radio" name="specialty" id="M2_SFPN-AFTI">
                     <label for="M2_SFPN-AFTI">M2 SFPN-AFTI</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_SFPN">
+                    <input type="radio" name="specialty" id="M2_SFPN">
                     <label for="M2_SFPN">M2 SFPN</label>
                 </div>
                 <div>
-                    <input type="radio" name="speciality" id="M2_STL">
+                    <input type="radio" name="specialty" id="M2_STL">
                     <label for="M2_STL">M2 STL</label>
                 </div>
             </fieldset>
