@@ -7,13 +7,21 @@
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiPjxwYXRoIGQ9Ik0zNjAtMzAwcS00MiAwLTcxLTI5dC0yOS03MXEwLTQyIDI5LTcxdDcxLTI5cTQyIDAgNzEgMjl0MjkgNzFxMCA0Mi0yOSA3MXQtNzEgMjlaTTIwMC04MHEtMzMgMC01Ni41LTIzLjVUMTIwLTE2MHYtNTYwcTAtMzMgMjMuNS01Ni41VDIwMC04MDBoNDB2LTgwaDgwdjgwaDMyMHYtODBoODB2ODBoNDBxMzMgMCA1Ni41IDIzLjVUODQwLTcyMHY1NjBxMCAzMy0yMy41IDU2LjVUNzYwLTgwSDIwMFptMC04MGg1NjB2LTQwMEgyMDB2NDAwWm0wLTQ4MGg1NjB2LTgwSDIwMHY4MFptMCAwdi04MCA4MFoiLz48L3N2Zz4=" type="image/svg+xml">
     <style>
         /* Parts of CSS shamelessly stolen from Mozilla's docs */
-        p, label, legend {
-            font: 1rem 'Fira Sans', sans-serif;
+        p, label, legend, h2, h3, li {
+            font-family: 'Fira Sans', sans-serif;
             user-select: none;
         }
 
         .title-container {
             font: 1rem 'Fira Sans', sans-serif;
+        }
+
+        fieldset {
+            padding: 0 12px 0 12px;
+        }
+
+        .courses-fieldset fieldset:last-of-type {
+            border-bottom: 0;
         }
 
         legend {
@@ -26,8 +34,8 @@
             display: flex;
         }
 
-        fieldset {
-            margin-top: 8px;
+        .table-container {
+            height: 85vh;
         }
 
         .courses-category {
@@ -41,14 +49,15 @@
 
         #m1, #m2 {
             width: 20vw;
-            height: 80vh;
+            height: 100%;
             overflow: auto;
             margin-left: 10px;
             margin-right: 10px;
         }
 
-        .courses-list input {
-            margin: .5em;
+        .courses-list div {
+            padding-top: .5em;
+            padding-bottom: .5em;
         }
 
         .courses-list div:hover, .specialty-list div:hover {
@@ -57,7 +66,12 @@
         }
 
         .result-link-container {
-            margin-left: 2em;
+            max-width: 45%;
+            flex-grow: 100;
+            padding-left: 0;
+            align-content: start;
+            display: flex;
+            flex-direction: column;
         }
 
         .result-link-container textarea {
@@ -73,10 +87,6 @@
 
         fieldset:disabled {
             color: #939393;
-        }
-
-        .result-link-container {
-            align-content: start;
         }
 
         .result-link-container label {
@@ -96,6 +106,40 @@
             width: 35px;
             cursor: pointer;
             z-index: 1;
+        }
+
+        .result-link {
+            padding: 12px
+        }
+
+        .steps {
+            padding-left: 20px;
+            padding-right: 20px;
+            border-top: 1px solid black;
+            flex-grow: 100;
+            margin-top: 1em;
+            overflow: auto;
+        }
+
+        li {
+            font-size: 18px;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        img.step {
+            user-select: none;
+            max-width: 500px;
+            max-height: 400px;
+            margin: auto;
+            display: block;
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+
+        .flex-img-holder {
+            display: flex;
+            justify-content: center;
         }
     </style>
     <script lang="js">
@@ -403,13 +447,38 @@
             </fieldset>
         </form>
 
-        <div class="result-link-container">
-            <p id="js-checkup">JavaScript needs to be activated!</p>
-            <label for="link">Your link</label>
-            <textarea id="link"></textarea>
-            <button onclick="saveToClipboard(this)">Copy to clipboard</button>
-	    <p style="margin-top: 20px; font-size: 24px; font-weight: bold;">Follow <a href="https://github.com/Biskweet/MasterCal/blob/main/README.md">these steps</a> to import your calendar on your phone!</p>
-        </div>
+        <fieldset class="result-link-container">
+            <legend>Intégrez le calendrier</legend>
+            <div class="result-link">
+                <p id="js-checkup">JavaScript needs to be activated!</p>
+                <label for="link">Your link</label>
+                <textarea id="link"></textarea>
+                <button onclick="saveToClipboard(this)">Copy to clipboard</button>
+            </div>
+            <div class="steps">
+	        <h2>Follow these steps to import your calendar on your phone</h2>
+                <ol>
+                    <li>Fill in your major and your courses (<b>starting with the major</b>) and copy your personal generated link</li>
+                    <li>Open <a href="https://calendar.google.com/">Google Calendar</a> or any other calendar app that supports importing and syncing from URL</li>
+                    <li>In the upper right corner of your screen, click the gear icon on the left of your Google account profile picture and choose <em>Settings</em>
+                        <img class="step" src="https://raw.githubusercontent.com/Biskweet/MasterCal/main/img/screenshot1.png">
+                    </li>
+                    <li>On the left of your screen, unwrap the <em>Add calendar</em> submenu and click <em>From URL</em>
+                        <img class="step" src="https://raw.githubusercontent.com/Biskweet/MasterCal/main/img/screenshot2.png">
+                    </li>
+                    <li>Fill in the link you copied and add the calendar. It's going to load for a bit because it's downloading all events</li>
+                    <li>(Optional) You can customize the name and color of your calendar</li>
+                    <li>⚠️ Now head to your Google Calendar phone app and open settings</li>
+                    <li>⚠️ Under the Google account you used, click Show more. Your new calendar is hidden there. Press the calendar item you just created
+                        <div class="flex-img-holder">
+                            <img class="step" src="https://raw.githubusercontent.com/Biskweet/MasterCal/main/img/screenshot3.png">
+                            <img class="step" src="https://raw.githubusercontent.com/Biskweet/MasterCal/main/img/screenshot4.png">
+                        </div>
+                    </li>
+                    <li>⚠️ Finally, press Sync to enable syncing on your phone.</li>
+                </ol>
+            </div>
+        </fieldset>
     </div>
 
     <div class="icon">
