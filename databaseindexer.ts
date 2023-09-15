@@ -13,7 +13,7 @@ class DatabaseIndexer {
 
         setInterval(() => {
             this.repopulate();
-        }, 12 * 60 * 60 * 1000)
+        }, config.databaseUpdateDelay)
     }
 
     private static async repopulate() {
