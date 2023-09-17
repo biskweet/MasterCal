@@ -10,12 +10,12 @@ class TinyLogger {
 
     public static lastTimeoutId: NodeJS.Timeout | null = null;
 
-    public static log(ip: string, query: string) {
+    public static log(logEntry: string) {
         const now = new Date();
 
         const l = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ` +
-                `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} | ` +
-                ip + ' | ' + query;
+                  `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} | ` +
+                  logEntry;
 
         this.logs.push(l);
 

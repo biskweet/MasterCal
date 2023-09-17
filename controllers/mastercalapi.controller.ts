@@ -11,10 +11,11 @@ const ICAL = require("ical.js");
 const MasterCalAPIController = Router();
 
 MasterCalAPIController.get('/', (req: Request, res: Response) => {
+    console.log(req.originalUrl);
     // Before anything, log the request
     let ip = req.headers['x-forwarded-for'];
     ip = ip instanceof Array ? ip.join(',') : ip;
-    TinyLogger.log(ip || req.socket.remoteAddress || '?.?.?.?', [ req.query.courses, req.query.specialty ].join('&'));
+    TinyLogger.log(`${ip || req.socket.remoteAddress || '?.?.?.?'} | specialty=[${req.query.specialty}]  courses=[${req.query.courses}]`);
 
     // Query parameters check
     if (!req.query.courses || !req.query.specialty)
@@ -38,7 +39,7 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
     // Ensure the specialty exists
     if (!endpoints.some((endpoint: Endpoint) => endpoint.name == req.query.specialty))
         return res.status(400) &&
-               res.send("specialty does not exist or is not supported. Please double check your input.");
+               res.send("Specialty does not exist or is not supported. Please double check your input.");
 
     // Ensure all courses exist
     if (coursesArray.some((courseCode: string) => !Object.keys(DatabaseIndexer.index).includes(courseCode)))
