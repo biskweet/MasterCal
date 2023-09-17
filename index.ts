@@ -12,7 +12,6 @@ app.use(cors());
 app.use("/mastercal",     MasterCalMainPageController);
 app.use("/mastercal/api", MasterCalAPIController);
 
-DatabaseIndexer.init()
-    .then(() => {
-        app.listen(config.PORT, () => console.log(`Running api on http://${ config.HOST }:${ config.PORT }/`));
-    });
+DatabaseIndexer.init().then(() => {
+    app.listen(config.PORT, () => console.log(`Running api on http://${ config.HOST }:${ config.PORT }/`));
+});
