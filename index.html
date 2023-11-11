@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasterCal</title>
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiPjxwYXRoIGQ9Ik0zNjAtMzAwcS00MiAwLTcxLTI5dC0yOS03MXEwLTQyIDI5LTcxdDcxLTI5cTQyIDAgNzEgMjl0MjkgNzFxMCA0Mi0yOSA3MXQtNzEgMjlaTTIwMC04MHEtMzMgMC01Ni41LTIzLjVUMTIwLTE2MHYtNTYwcTAtMzMgMjMuNS01Ni41VDIwMC04MDBoNDB2LTgwaDgwdjgwaDMyMHYtODBoODB2ODBoNDBxMzMgMCA1Ni41IDIzLjVUODQwLTcyMHY1NjBxMCAzMy0yMy41IDU2LjVUNzYwLTgwSDIwMFptMC04MGg1NjB2LTQwMEgyMDB2NDAwWm0wLTQ4MGg1NjB2LTgwSDIwMHY4MFptMCAwdi04MCA4MFoiLz48L3N2Zz4=" type="image/svg+xml">
@@ -100,7 +101,7 @@
 
         .icon img {
             position: fixed;
-            bottom: 10px;
+            top: 10px;
             right: 15px;
             width: 35px;
             cursor: pointer;
@@ -142,7 +143,7 @@
         }
     </style>
     <script lang="js">
-        const baseUrl = "https://biskweet.freeboxos.fr/mastercal/api?"
+        const baseUrl = "https://mastercal.xyz/api?"
         const updateLink = () => {
             const specialty = document.querySelector("input[type=radio]:checked");
             document.querySelector("fieldset.courses-fieldset").disabled = !specialty;
@@ -448,7 +449,7 @@
                 <p id="js-checkup">JavaScript needs to be activated!</p>
                 <label for="link">Your link</label>
                 <textarea id="link"></textarea>
-                <button onclick="saveToClipboard(this)">Copy to clipboard</button>
+		<!-- <button onclick="saveToClipboard(this)">Copy to clipboard</button> -->
             </div>
             <div class="steps">
 	        <h2>Follow these steps to import your calendar on your phone</h2>
