@@ -1,6 +1,6 @@
-import { endpoints } from "~~/endpoints";
 import * as path from "path";
 import * as fs from "fs";
+import { endpoints } from "~~/endpoints";
 import { config } from "~~/config";
 
 const ICAL = require("ical.js")
@@ -13,7 +13,7 @@ class DatabaseIndexer {
 
         setInterval(() => {
             this.repopulate();
-        }, config.databaseUpdateDelay)
+        }, config.databaseUpdateDelay);
     }
 
     private static async repopulate() {
@@ -28,6 +28,16 @@ class DatabaseIndexer {
         fs.mkdirSync(calendarsDir, { recursive: true });
 
         for (const [ index, endpoint ] of endpoints.entries()) {
+            const filepath = path.join(calendarsDir, endpoint.name + ".ics");
+
+	    if (fs.existsSync(filepath) && (Date.now() - fs.statSync(filepath).mtimeMs) < (config.databaseUpdateDelay / 2)) {
+
+                // Use local version of files that are considered fresh
+                const data = fs.readFileSync(filepath, { encoding: "utf8" });
+                await this.processCalendar(data, endpoint.name);
+
+	    } else {
+
             const data = await fetch(endpoint.route, {
                 headers: {
                     "Authorization": `Basic ${config.CALDAVZAP_TOKEN}`
@@ -38,9 +48,10 @@ class DatabaseIndexer {
             const processed = await this.processCalendar(data, endpoint.name)
 
             // Only write the processed data (don't keep the original which has tons of obsolete data)
-            fs.writeFileSync(path.join(calendarsDir, endpoint.name + ".ics"), processed);
+            fs.writeFileSync(filepath, processed);
 
             process.stdout.write(`\rSaved calendar for ${endpoint.name} (${index + 1} over ${endpoints.length}).      `);
+	    }
         }
 
         process.stdout.write('\n');
