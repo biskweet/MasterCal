@@ -5,6 +5,6 @@ export const config = {
     regexCourseCode: /(MU[45](?:IN|EE)[a-zA-Z]?\d{2,3})[ _-]/,
     regexValidateQueryParams: /[a-zA-Z,]+/,
     logsFilename: "logs.txt",
-    logTimeoutDuration: 2 * 60 * 1000,         // 2 min
-    databaseUpdateDelay: 6 * 60 * 60 * 1000,  // 6 hours
+    logTimeoutDuration: 2 * 60 * 1000,        // 2 min
+    databaseUpdateDelay: 2 * 60 * 60 * 1000,  // 2 hours
 }
