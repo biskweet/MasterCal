@@ -9,10 +9,19 @@ class DatabaseIndexer {
     public static index: { [key: string]: string } = {};
 
     public static async init() {
+	/**
+	 * Loads calendars from the distant server or falls back on local
+	 * files if the files are fresh or if te server is down. If ne fresh
+	 * file is available, requires the server for the first DB population
+	 */
+
         await this.repopulate();
 
         setInterval(() => {
-            this.repopulate();
+            this.repopulate()
+	    .catch((err) =>
+	        process.stdout.write(`Unable to reach the server (${err})`)
+	    );
         }, config.databaseUpdateDelay);
     }
 
@@ -42,7 +51,7 @@ class DatabaseIndexer {
                 headers: {
                     "Authorization": `Basic ${config.CALDAVZAP_TOKEN}`
                 }
-            }).then(response => response.text())
+            }).then(response => response.text());
 
             // Now we index each course and link it to the newly downloaded file for faster retrieving
             const processed = await this.processCalendar(data, endpoint.name)

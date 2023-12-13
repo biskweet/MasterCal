@@ -17,6 +17,8 @@ class TinyLogger {
                   `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} | ` +
                   logEntry;
 
+	console.log(l);
+
         this.logs.push(l);
 
         this.startDumpTimeout();
