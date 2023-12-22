@@ -27,5 +27,5 @@ DatabaseIndexer.init().then(() => {
 	    key: privateKey,
     }, app);
 
-    httpsServer.listen(config.PORT, () => console.log(`Running api on http://${ config.HOST }:${ config.PORT }/`));
+    httpsServer.listen(config.PORT, () => console.log(`Running api on https://${ config.HOST }:${ config.PORT }/`));
 });

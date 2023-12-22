@@ -46,7 +46,7 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
         const filename = DatabaseIndexer.index[courseCode] + ".ics";
         const events = GetEventsFromFile(filename)
 
-        // Add all events that matches the course code
+        // Add all events that match the course code
         events.forEach((event: any) => {
             const match = event.getFirstPropertyValue("summary").match(config.regexCourseCode);
 
