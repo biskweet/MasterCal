@@ -2,6 +2,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { endpoints } from "~~/endpoints";
 import { config } from "~~/config";
+import {IsCourseEnglish} from "~~/utils/IsCourseEnglish";
 
 const ICAL = require("ical.js")
 
@@ -99,9 +100,11 @@ class DatabaseIndexer {
         relevantEvents.forEach((event: any) => {
             try {
                 const match = event.getFirstPropertyValue("summary").match(config.regexCourseCode);
-                if (match) {
+
+                // If we found a code and the course is not English class (don't index English class)
+                if (match && !IsCourseEnglish(match[1]))
                     this.index[match[1]] = name;
-                }
+
             } catch (err) {
                 console.error(`Failed to get getFirstPropertyValue 'summary' for event ${event}\n => ${err}`);
             }
