@@ -5,7 +5,7 @@ const logger: RequestHandler = (req, res, next) => {
     let ip = req.headers['x-forwarded-for'];
     ip = ip instanceof Array ? ip.join(',') : ip;
 
-    TinyLogger.log(`${ip || req.socket.remoteAddress || '?.?.?.?'} | ${req.originalUrl}`);
+    TinyLogger.log(`${ip || req.socket.remoteAddress || '?.?.?.?'} | ${req.originalUrl} | ${req.get('User-Agent')}`);
 
     next();
 }
