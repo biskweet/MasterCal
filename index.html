@@ -14,6 +14,10 @@
                 font-family: 'Fira Sans', sans-serif;
                 user-select: none;
             }
+
+	    div.steps * {
+		user-select: text !important;
+	    }
             
             .title-container {
                 font: 1rem 'Fira Sans', sans-serif;
@@ -564,19 +568,20 @@
             <button onclick="saveToClipboard(this)">Copy to clipboard</button>
             </div>
             <div class="steps">
+		<h3>Note: if 2+ courses have the same title and similar course codes, you should probably tick them both.</h3>
 	        <h2>Follow these steps to import your calendar on your phone</h2>
                 <ol>
                     <li>Fill in your major and your courses (<b>starting with the major</b>) and copy your personal generated link</li>
-		    <li>Open <a href="https://calendar.proton.me/">Proton Calendar</a>, <a href="https://calendar.google.com/">Google Calendar</a> or any other app that supports importing and syncing from URL</li>
-                    <li>On Proton, click the "+" icon on the left panel and choose "Add calendar from URL", then go to step 5. On Google, in the upper right corner of your screen click the gear icon next to your Google account picture and choose <em>Settings</em> (<a href="https://calendar.google.com/calendar/u/0/r/settings/addbyurl">direct link</a>)
+		    <li>Open <a href="https://calendar.proton.me/">Proton Calendar</a>, <a href="https://calendar.google.com/">Google Calendar</a> or any other app that supports importing and syncing from URL. Proton Calendar is recommended as it updates more frequently and has a cleaner interface.</li>
+                    <li>On Proton, click the "+" icon on the left panel and choose "Add calendar from URL". Inout the URL and click 'import'. That's it for Proton! On Google, in the upper right corner of your screen click the gear icon next to your Google account picture and choose <em>Settings</em> (<a href="https://calendar.google.com/calendar/u/0/r/settings/addbyurl">direct link</a>)
                         <img class="step" src="https://raw.githubusercontent.com/Biskweet/MasterCal/main/img/screenshot1.png">
                     </li>
                     <li>On the left of your screen, unwrap the <em>Add calendar</em> submenu and click <em>From URL</em>
                         <img class="step" src="https://raw.githubusercontent.com/Biskweet/MasterCal/main/img/screenshot2.png">
                     </li>
                     <li>Fill in the link you copied and add the calendar. It's going to load for a bit because it's downloading all events</li>
-                    <li>⚠️ Now head to your Google Calendar phone app and open settings</li>
-                    <li>⚠️ Under the Google account you used, click Show more. Your new calendar is hidden there. Press the calendar item you just created
+                    <li>⚠️ Now head to your Google Calendar phone app and open settings.</li>
+		    <li>⚠️ Under the Google account you used, click Show more. Your new calendar is hidden there. Press the calendar item you just created
                         <div class="flex-img-holder">
                             <img class="step" src="https://raw.githubusercontent.com/Biskweet/MasterCal/main/img/screenshot3.png">
                             <img class="step" src="https://raw.githubusercontent.com/Biskweet/MasterCal/main/img/screenshot4.png">
