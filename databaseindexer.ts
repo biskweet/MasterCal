@@ -94,7 +94,11 @@ class DatabaseIndexer {
 
         // Create new, clean icalendar with relevant events
         const filteredCal = new ICAL.Component("vcalendar");
-        relevantEvents.forEach((event: any) => filteredCal.addSubcomponent(event))
+        relevantEvents.forEach((event: any) => {
+		// EXDATE are not supported by Proton
+		event.removeAllProperties("exdate");
+		filteredCal.addSubcomponent(event);
+	});
 
         // Indexing each course code
         relevantEvents.forEach((event: any) => {
