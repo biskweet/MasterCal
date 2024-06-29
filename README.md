@@ -1,4 +1,4 @@
-# MasterCal-API
+# MasterCal
 MasterCal serves personalized iCalendars for CS Masters at Sorbonne University, directly in yout Google Calendar.
 
 ## Setup
