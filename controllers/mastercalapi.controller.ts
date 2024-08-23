@@ -13,7 +13,7 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
     // Query parameters check
     if (!req.query.courses || !req.query.specialty)
         return res.status(400) &&
-               res.send("Invalid query parameters.");
+               res.send("Invalid query parameters. Must choose a major and at least 1 course.");
 
     // Enforce type
     req.query.courses = req.query.courses as string;
