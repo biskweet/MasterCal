@@ -2,12 +2,13 @@ import * as path from "path";
 import * as fs from "fs";
 import { endpoints } from "~~/endpoints";
 import { config } from "~~/config";
-import {IsCourseEnglish} from "~~/utils/IsCourseEnglish";
+import { IsCourseEnglishClass } from "~~/utils/IsCourseEnglishClass";
+import { IsCourseOIP } from "~~/utils/IsCourseOIP";
 
 const ICAL = require("ical.js")
 
 class DatabaseIndexer {
-    public static index: { [key: string]: string } = {};
+    public static index: { [ key: string ]: string } = {};
 
     public static async init() {
 	/**
@@ -19,10 +20,9 @@ class DatabaseIndexer {
         await this.repopulate();
 
         setInterval(() => {
-            this.repopulate()
-	    .catch((err) =>
-	        process.stdout.write(`Unable to reach the server (${err})`)
-	    );
+            this.repopulate().catch((err) =>
+	            process.stdout.write(`Unable to reach the server (${err})`)
+	        );
         }, config.databaseUpdateDelay);
     }
 
@@ -40,28 +40,29 @@ class DatabaseIndexer {
         for (const [ index, endpoint ] of endpoints.entries()) {
             const filepath = path.join(calendarsDir, endpoint.name + ".ics");
 
-	    if (fs.existsSync(filepath) && (Date.now() - fs.statSync(filepath).mtimeMs) < (config.databaseUpdateDelay / 2)) {
+            // If the file exists and it is less than `databaseUpdateDelay` milliseconds old
+            if (fs.existsSync(filepath) && (Date.now() - fs.statSync(filepath).mtimeMs) < (config.databaseUpdateDelay / 2)) {
 
-                // Use local version of files that are considered fresh
-                const data = fs.readFileSync(filepath, { encoding: "utf8" });
-                await this.processCalendar(data, endpoint.name);
+                    // Use local version of files that are considered fresh
+                    const data = fs.readFileSync(filepath, { encoding: "utf8" });
+                    await this.processCalendar(data, endpoint.name);
 
-	    } else {
+            } else {
 
-            const data = await fetch(endpoint.route, {
-                headers: {
-                    "Authorization": `Basic ${config.CALDAVZAP_TOKEN}`
-                }
-            }).then(response => response.text());
+                const data = await fetch(endpoint.route, {
+                    headers: {
+                        "Authorization": `Basic ${config.CALDAVZAP_TOKEN}`
+                    }
+                }).then(response => response.text());
 
-            // Now we index each course and link it to the newly downloaded file for faster retrieving
-            const processed = await this.processCalendar(data, endpoint.name)
+                // Now we index each course and link it to the newly downloaded file for faster retrieving
+                const processed = await this.processCalendar(data, endpoint.name)
 
-            // Only write the processed data (don't keep the original which has tons of obsolete data)
-            fs.writeFileSync(filepath, processed);
+                // Only write the processed data (don't keep the original which has tons of obsolete data)
+                fs.writeFileSync(filepath, processed);
 
-            process.stdout.write(`\rSaved calendar for ${endpoint.name} (${index + 1} over ${endpoints.length}).      `);
-	    }
+                process.stdout.write(`\rSaved calendar for ${endpoint.name} (${index + 1}/${endpoints.length}).      `);
+            }
         }
 
         process.stdout.write('\n');
@@ -69,7 +70,7 @@ class DatabaseIndexer {
 
     private static async processCalendar(ics: string, name: string) : Promise<string> {
         /**
-         * Processes a calendar by indexing each cours to the corresponding containing file
+         * Processes a calendar by indexing each course to the corresponding containing file
          * (eg: MU4IN900 -> M1_SFPN). It also creates a lighter calendar only containing
          * courses for the current academic year.
          */
@@ -106,7 +107,7 @@ class DatabaseIndexer {
                 const match = event.getFirstPropertyValue("summary").match(config.regexCourseCode);
 
                 // If we found a code and the course is not English class (don't index English class)
-                if (match && !IsCourseEnglish(match[1]))
+                if (match && !IsCourseEnglishClass(match[1]) && !IsCourseOIP(match[1]))
                     this.index[match[1]] = name;
 
             } catch (err) {

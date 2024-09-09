@@ -6,9 +6,9 @@ class TinyLogger {
      * Very minimal and stupid logger but I just want to put a term to this project and deploy
      */
 
-    public static logs: string[] = [];
+    private static logs: string[] = [];
 
-    public static lastTimeoutId: NodeJS.Timeout | null = null;
+    private static lastTimeoutId: NodeJS.Timeout | null = null;
 
     public static log(logEntry: string) {
         const now = new Date();
@@ -17,7 +17,7 @@ class TinyLogger {
                   `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} | ` +
                   logEntry;
 
-	console.log(l);
+	    console.log(l);
 
         this.logs.push(l);
 
@@ -25,22 +25,22 @@ class TinyLogger {
     }
 
     private static startDumpTimeout() {
-        // If the buffer reaches 15 elements we dump regardless
+        // If the buffer reaches 15 elements, we dump regardless of the timeout
         if (this.logs.length >= 15)
-            this.dumpLog(this.logs);
+            this.dumpLogs(this.logs);
 
-        // If no timeout was planned we start one
+        // If no timeout was planned we start one to buffer in case of multiple logs
         if (this.lastTimeoutId == null)
-            this.lastTimeoutId = setTimeout(this.dumpLog, config.logTimeoutDuration, this.logs);
+            this.lastTimeoutId = setTimeout(this.dumpLogs, config.logTimeoutDuration, this.logs);
 
-        // A timeout was planned, refresh it
+        // A timeout was planned: refresh it
         else {
             clearTimeout(this.lastTimeoutId);
-            this.lastTimeoutId = setTimeout(this.dumpLog, config.logTimeoutDuration, this.logs);
+            this.lastTimeoutId = setTimeout(this.dumpLogs, config.logTimeoutDuration, this.logs);
         }
     }
 
-    private static dumpLog(logs: string[]) {
+    private static dumpLogs(logs: string[]) {
         fs.appendFileSync(config.logsFilename, logs.join('\n') + '\n');
 
         TinyLogger.logs = [];

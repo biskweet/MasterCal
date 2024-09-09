@@ -26,8 +26,8 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
     // Transform to uppercase string array
     const coursesArray = req.query.courses.toUpperCase().split(',');
 
-    // Ensure there is no more than 8 courses
-    if (coursesArray.length >= 10)
+    // Ensure there is no more than 10 courses
+    if (coursesArray.length > 10)
         return res.status(400) &&
                res.send("Too many courses!");
 
