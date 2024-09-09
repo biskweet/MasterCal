@@ -13,7 +13,7 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
     // Query parameters check
     if (!req.query.courses || !req.query.specialty)
         return res.status(400) &&
-               res.send("Invalid query parameters. Must choose a major and at least 1 course.");
+               res.send("Invalid query parameters: Must choose a major and at least 1 course.");
 
     // Enforce type
     req.query.courses = req.query.courses as string;
@@ -21,7 +21,7 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
 
     if (!config.regexValidateQueryParams.exec(req.query.courses))
         return res.status(400) &&
-               res.send("Invalid query parameters.");
+               res.send("Invalid query parameters: Regex mismatch.");
 
     // Transform to uppercase string array
     const coursesArray = req.query.courses.toUpperCase().split(',');
