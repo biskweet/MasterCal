@@ -4,6 +4,7 @@ import { config } from "~~/config";
 import { endpoints } from "~~/endpoints";
 import { Endpoint } from "~~/interfaces";
 import { GetEventsFromFile } from "~~/utils/GetEventsFromFile";
+import { IsCourseOIP } from "~~/utils/IsCourseOIP";
 
 const ICAL = require("ical.js");
 
@@ -43,6 +44,9 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
 
     const userCalendar = new ICAL.Component("vcalendar");
     coursesArray.forEach((courseCode: string) => {
+        if (IsCourseOIP(courseCode))
+            return;
+
         const filename = DatabaseIndexer.index[courseCode] + ".ics";
         const events = GetEventsFromFile(filename)
 
@@ -54,9 +58,9 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
             if (match && match[1] == courseCode)
                 userCalendar.addSubcomponent(event);
 
-            // If no match was detected AND the current calendar is the student's specialty, we add it too,
+            // If no match was found BUT the current calendar is the student's specialty, we still add it,
             // as it could be a relevant event (eg: "M1 - Réunion rentrée générale 1", "ATRIUM DES MÉTIERS", etc.)
-            if (!match && filename == req.query.specialty)
+            else if (!match && filename == req.query.specialty)
                 userCalendar.addSubcomponent(event);
         });
     });
@@ -66,7 +70,7 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
         const generalMastersEvents = GetEventsFromFile(req.query.specialty.slice(0, 2) + ".ics")
         generalMastersEvents.forEach((event: any) => userCalendar.addSubcomponent(event));
     }
-        
+
     res.set({ "content-type": "text/calendar; charset=utf-8" });
     return res.send(userCalendar.toString());
 });

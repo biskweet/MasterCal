@@ -96,18 +96,18 @@ class DatabaseIndexer {
         // Create new, clean icalendar with relevant events
         const filteredCal = new ICAL.Component("vcalendar");
         relevantEvents.forEach((event: any) => {
-		// EXDATE are not supported by Proton
-		event.removeAllProperties("exdate");
-		filteredCal.addSubcomponent(event);
-	});
+            // EXDATE are not supported by Proton
+            event.removeAllProperties("exdate");
+            filteredCal.addSubcomponent(event);
+	    });
 
         // Indexing each course code
         relevantEvents.forEach((event: any) => {
             try {
                 const match = event.getFirstPropertyValue("summary").match(config.regexCourseCode);
 
-                // If we found a code and the course is not English class (don't index English class)
-                if (match && !IsCourseEnglishClass(match[1]) && !IsCourseOIP(match[1]))
+                // If we found a code and the course is not English class (don't index English classes)
+                if (match && !IsCourseEnglishClass(match[1]))
                     this.index[match[1]] = name;
 
             } catch (err) {
