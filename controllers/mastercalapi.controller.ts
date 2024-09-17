@@ -43,6 +43,7 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
                res.send("Course not found.");
 
     const userCalendar = new ICAL.Component("vcalendar");
+
     coursesArray.forEach((courseCode: string) => {
         if (IsCourseOIP(courseCode))
             return;
@@ -57,18 +58,27 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
             // If we detect a course code and it matches with the request, add to the calendar
             if (match && match[1] == courseCode)
                 userCalendar.addSubcomponent(event);
-
-            // If no match was found BUT the current calendar is the student's specialty, we still add it,
-            // as it could be a relevant event (eg: "M1 - Réunion rentrée générale 1", "ATRIUM DES MÉTIERS", etc.)
-            else if (!match && filename == req.query.specialty)
-                userCalendar.addSubcomponent(event);
         });
     });
 
-    // Lastly, packing up events from M1.ics/M2.ics if the user is a student
+    // Packing up events from M1.ics/M2.ics and MX_XXX.ics if the user is a student
     if (req.query.specialty != "NOSPEC") {
         const generalMastersEvents = GetEventsFromFile(req.query.specialty.slice(0, 2) + ".ics")
         generalMastersEvents.forEach((event: any) => userCalendar.addSubcomponent(event));
+
+        // Add all events that are NOT courses but belong to the user's specialty
+        // calendar, except OIP (we also add OIP separately here)
+        const filename = req.query.specialty + ".ics";
+        const events = GetEventsFromFile(filename);
+
+        events.forEach((event: any) => {
+            const match = event.getFirstPropertyValue("summary").match(config.regexCourseCode);
+
+            // match being undefined means it's not a course
+            // if match is defined then it's a course, only add it if it's OIP
+            if (!match || IsCourseOIP(match[1]))
+                userCalendar.addSubcomponent(event);
+        })
     }
 
     res.set({ "content-type": "text/calendar; charset=utf-8" });
