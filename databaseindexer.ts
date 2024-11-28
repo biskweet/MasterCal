@@ -3,7 +3,6 @@ import * as fs from "fs";
 import { endpoints } from "~~/endpoints";
 import { config } from "~~/config";
 import { IsCourseEnglishClass } from "~~/utils/IsCourseEnglishClass";
-import { IsCourseOIP } from "~~/utils/IsCourseOIP";
 
 const ICAL = require("ical.js")
 
@@ -13,8 +12,8 @@ class DatabaseIndexer {
     public static async init() {
 	/**
 	 * Loads calendars from the distant server or falls back on local
-	 * files if the files are fresh or if te server is down. If ne fresh
-	 * file is available, requires the server for the first DB population
+	 * files if files are fresh or if the server is down. Requires
+     * server for first DB population.
 	 */
 
         await this.repopulate();
@@ -28,9 +27,8 @@ class DatabaseIndexer {
 
     private static async repopulate() {
         /**
-         * This function downloads all calendars from CalDavZAP.
-         * It downloads each file one by one to imitate a browser's behavior
-         * in order to avoid getting blocked.
+         * Downloads all calendars from CalDavZAP one by one to
+         * avoid getting blocked.
          */
 
         const calendarsDir = path.join(process.cwd(), "calendars/");
@@ -40,7 +38,7 @@ class DatabaseIndexer {
         for (const [ index, endpoint ] of endpoints.entries()) {
             const filepath = path.join(calendarsDir, endpoint.name + ".ics");
 
-            // If the file exists and it is less than `databaseUpdateDelay` milliseconds old
+            // If file exists and is less than `databaseUpdateDelay` milliseconds old
             if (fs.existsSync(filepath) && (Date.now() - fs.statSync(filepath).mtimeMs) < (config.databaseUpdateDelay / 2)) {
 
                     // Use local version of files that are considered fresh
@@ -58,7 +56,7 @@ class DatabaseIndexer {
                 // Now we index each course and link it to the newly downloaded file for faster retrieving
                 const processed = await this.processCalendar(data, endpoint.name)
 
-                // Only write the processed data (don't keep the original which has tons of obsolete data)
+                // Only write processed data (don't keep the original, it has tons of obsolete events)
                 fs.writeFileSync(filepath, processed);
 
                 process.stdout.write(`\rSaved calendar for ${endpoint.name} (${index + 1}/${endpoints.length}).      `);
@@ -70,9 +68,10 @@ class DatabaseIndexer {
 
     private static async processCalendar(ics: string, name: string) : Promise<string> {
         /**
-         * Processes a calendar by indexing each course to the corresponding containing file
+         * Processes a calendar by indexing each course to the corresponding file
          * (eg: MU4IN900 -> M1_SFPN). It also creates a lighter calendar only containing
-         * courses for the current academic year.
+         * courses for the current academic year (reduces file weight and reduces API
+         * response size by a lot.
          */
 
         const jcalData = ICAL.parse(ics);
@@ -93,11 +92,13 @@ class DatabaseIndexer {
             return event.getFirstPropertyValue("dtend").compare(academicYearStartingDay) != -1;
         });
 
-        // Create new, clean icalendar with relevant events
+        // Create new, clean icalendar with only relevant events
         const filteredCal = new ICAL.Component("vcalendar");
         relevantEvents.forEach((event: any) => {
-            // EXDATE are not supported by Proton
+            // EXDATE are not supported by Proton so we remove them
+            // Proton PLEASE support exdates!!
             event.removeAllProperties("exdate");
+
             filteredCal.addSubcomponent(event);
 	    });
 

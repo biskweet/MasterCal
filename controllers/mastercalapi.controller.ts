@@ -11,7 +11,7 @@ const ICAL = require("ical.js");
 const MasterCalAPIController = Router();
 
 MasterCalAPIController.get('/', (req: Request, res: Response) => {
-    // Query parameters check
+    // Query parameters existence check
     if (!req.query.courses || !req.query.specialty)
         return res.status(400) &&
                res.send("Invalid query parameters: Must choose a major and at least 1 course.");
@@ -20,11 +20,12 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
     req.query.courses = req.query.courses as string;
     req.query.specialty = req.query.specialty as string;
 
+    // Check regex compatibility
     if (!config.regexValidateQueryParams.exec(req.query.courses))
         return res.status(400) &&
                res.send("Invalid query parameters: Regex mismatch.");
 
-    // Transform to uppercase string array
+    // Transform to aray of uppercase strings
     const coursesArray = req.query.courses.toUpperCase().split(',');
 
     // Ensure there is no more than 10 courses
@@ -32,7 +33,7 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
         return res.status(400) &&
                res.send("Too many courses!");
 
-    // Ensure the specialty exists
+    // Ensure the specialty exists (except for NOSPEC which is designed for eg. teachers)
     if (req.query.specialty != "NOSPEC" && !endpoints.some((endpoint: Endpoint) => endpoint.name == req.query.specialty))
         return res.status(400) &&
                res.send("Specialty does not exist or is not supported. Please double check your input.");
@@ -44,8 +45,9 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
 
     const userCalendar = new ICAL.Component("vcalendar");
 
+    // For each course queried, add all matching events to the custom user calendar
     coursesArray.forEach((courseCode: string) => {
-        if (IsCourseOIP(courseCode))
+        if (IsCourseOIP(courseCode))  // OIP should not be here but just to be sure
             return;
 
         const filename = DatabaseIndexer.index[courseCode] + ".ics";
@@ -66,16 +68,16 @@ MasterCalAPIController.get('/', (req: Request, res: Response) => {
         const generalMastersEvents = GetEventsFromFile(req.query.specialty.slice(0, 2) + ".ics")
         generalMastersEvents.forEach((event: any) => userCalendar.addSubcomponent(event));
 
-        // Add all events that are NOT courses but belong to the user's specialty
-        // calendar, except OIP (we also add OIP separately here)
+        // Add all events that are NOT courses but belong to the user's
+        // specialty calendar, except OIP (we also add OIP separately here)
         const filename = req.query.specialty + ".ics";
         const events = GetEventsFromFile(filename);
 
         events.forEach((event: any) => {
             const match = event.getFirstPropertyValue("summary").match(config.regexCourseCode);
 
-            // match being undefined means it's not a course
-            // if match is defined then it's a course, only add it if it's OIP
+            // match being undefined means it's not a course, it's some uncategorized event -> add it
+            // if match IS defined then it's a course, but only add it if it's OIP
             if (!match || IsCourseOIP(match[1]))
                 userCalendar.addSubcomponent(event);
         })
