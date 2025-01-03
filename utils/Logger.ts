@@ -1,5 +1,5 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
-import { TinyLogger } from "~~/tinylogger";
+import { TinyLogger } from "../tinylogger";
 
 const logger: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
     let ip = req.headers['x-forwarded-for'];

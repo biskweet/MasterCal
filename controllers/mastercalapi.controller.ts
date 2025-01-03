@@ -1,10 +1,10 @@
 import { Request, Response, Router } from "express";
-import { DatabaseIndexer } from "~~/databaseindexer";
-import { config } from "~~/config";
-import { endpoints } from "~~/endpoints";
-import { Endpoint } from "~~/interfaces";
-import { GetEventsFromFile } from "~~/utils/GetEventsFromFile";
-import { IsCourseOIP } from "~~/utils/IsCourseOIP";
+import { DatabaseIndexer } from "../databaseindexer";
+import { config } from "../config";
+import { endpoints } from "../endpoints";
+import { Endpoint } from "../interfaces";
+import { GetEventsFromFile } from "../utils/GetEventsFromFile";
+import { IsCourseOIP } from "../utils/IsCourseOIP";
 
 const ICAL = require("ical.js");
 

@@ -1,8 +1,8 @@
 import * as path from "path";
 import * as fs from "fs";
-import { endpoints } from "~~/endpoints";
-import { config } from "~~/config";
-import { IsCourseEnglishClass } from "~~/utils/IsCourseEnglishClass";
+import { endpoints } from "./endpoints";
+import { config } from "./config";
+import { IsCourseEnglishClass } from "./utils/IsCourseEnglishClass";
 
 const ICAL = require("ical.js")
 

@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { config } from "~~/config";
+import { config } from "./config";
 
 class TinyLogger {
     /**
