@@ -2,7 +2,7 @@
 MasterCal serves personalized iCalendars for CS Masters at Sorbonne University, directly in yout Google Calendar.
 
 ## Setup
-1. Go to [https://mastercal.xyz](https://mastercal.xyz)
+1. Go to [https://mastercal.alias-asso.fr](https://mastercal.alias-asso.fr)
 2. Fill in your major and your courses (starting with the major) and copy your personal generated link
 3. Open [Google Calendar](https://calendar.google.com/), [Proton Calendar](https://calendar.proton.me/u/0/) or any other calendar app that supports importing and syncing from URL (I will use Google Calendar in the setup)
 4. In the upper right corner of your screen, click the gear icon on the left of your Google account profile picture and choose _Settings_
