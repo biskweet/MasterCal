@@ -8,8 +8,6 @@
         <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiPjxwYXRoIGQ9Ik0zNjAtMzAwcS00MiAwLTcxLTI5dC0yOS03MXEwLTQyIDI5LTcxdDcxLTI5cTQyIDAgNzEgMjl0MjkgNzFxMCA0Mi0yOSA3MXQtNzEgMjlaTTIwMC04MHEtMzMgMC01Ni41LTIzLjVUMTIwLTE2MHYtNTYwcTAtMzMgMjMuNS01Ni41VDIwMC04MDBoNDB2LTgwaDgwdjgwaDMyMHYtODBoODB2ODBoNDBxMzMgMCA1Ni41IDIzLjVUODQwLTcyMHY1NjBxMCAzMy0yMy41IDU2LjVUNzYwLTgwSDIwMFptMC04MGg1NjB2LTQwMEgyMDB2NDAwWm0wLTQ4MGg1NjB2LTgwSDIwMHY4MFptMCAwdi04MCA4MFoiLz48L3N2Zz4=" type="image/svg+xml">
         <style>
             /* Parts of CSS shamelessly stolen from Mozilla's docs */
-            /*
-            */
             p, label, legend, h2, h3, li {
                 font-family: 'Fira Sans', sans-serif;
                 user-select: none;
@@ -105,10 +103,8 @@
                     user-select: none;
                     max-width: 500px;
                     max-height: 400px;
-                    margin: auto;
                     display: block;
-                    margin-left: 1em;
-                    margin-right: 1em;
+                    margin: auto 1em;
                 }
             }
 
@@ -341,211 +337,198 @@
                 <legend>Pick your courses (8 max)</legend>
                 <div class="courses-list" id="m1">
                     <fieldset class="courses-category">
-                        <legend>M1 ANDROIDE</legend>
-                        <div><input type="checkbox" id="MU4IN200"><label for="MU4IN200">MU4IN200 - MOGPL</label></div>
-                        <div><input type="checkbox" id="MU4IN201"><label for="MU4IN201">MU4IN201 - RP</label></div>
-                        <div><input type="checkbox" id="MU4IN202"><label for="MU4IN202">MU4IN202 - FOSYMA</label></div>
-                        <div><input type="checkbox" id="MU4IN203"><label for="MU4IN203">MU4IN203 - IHM</label></div>
-                        <div><input type="checkbox" id="MU4IN204"><label for="MU4IN204">MU4IN204 - DJ</label></div>
-                        <div><input type="checkbox" id="MU4IN210"><label for="MU4IN210">MU4IN210 - AROB</label></div>
+                        <legend>M1 AI2D/ANDROIDE</legend>
+                        <div><input type="checkbox" id="UM4IN200"><label for="UM4IN200">UM4IN200 - MOGPL</label></div>
+                        <div><input type="checkbox" id="UM4IN211"><label for="UM4IN211">UM4IN211 - IREC</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M1 BIM</legend>
-                        <div><input type="checkbox" id="MU4IN700"><label for="MU4IN700">MU4IN700 - AAGB</label></div>
-                        <div><input type="checkbox" id="MU4IN701"><label for="MU4IN701">MU4IN701 - SBAS</label></div>
-                        <div><input type="checkbox" id="MU4IN702"><label for="MU4IN702">MU4IN702 - MMCN</label></div>
-                        <div><input type="checkbox" id="MU4IN705"><label for="MU4IN705">MU4IN705 - DeepLife</label></div>
-                        <div><input type="checkbox" id="MU4MA062"><label for="MU4MA062">MU4MA062 - Maths</label></div>
+                        <div><input type="checkbox" id="UM4MA062"><label for="UM4MA062">UM4MA062 - SDED</label></div>
+                        <div><input type="checkbox" id="UM4IN700"><label for="UM4IN700">UM4IN700 - AAGB</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
-                        <legend>M1 DAC</legend>
-                        <div><input type="checkbox" id="MU4IN800"><label for="MU4IN800">MU4IN800 - LRC</label></div>
-                        <div><input type="checkbox" id="MU4IN801"><label for="MU4IN801">MU4IN801 - MLBDA</label></div>
-                        <div><input type="checkbox" id="MU4IN803"><label for="MU4IN803">MU4IN803 - SAM</label></div>
-                        <div><input type="checkbox" id="MU4IN806"><label for="MU4IN806">MU4IN806 - IAMSI</label></div>
-                        <div><input type="checkbox" id="MU4IN811"><label for="MU4IN811">MU4IN811 - ML</label></div>
-                        <div><input type="checkbox" id="MU4IN812"><label for="MU4IN812">MU4IN812 - MLL</label></div>
-                        <div><input type="checkbox" id="MU4IN813"><label for="MU4IN813">MU4IN813 - RITAL</label></div>
-                        <div><input type="checkbox" id="MU4IN814"><label for="MU4IN814">MU4IN814 - DALAS</label></div>
+                        <legend>M1 MIND/DAC</legend>
+                        <div><input type="checkbox" id="UM4IN814"><label for="UM4IN814">UM4IN814 - DALAS</label></div>
+                        <div><input type="checkbox" id="UM4IN800"><label for="UM4IN800">UM4IN800 - LRC</label></div>
+                        <div><input type="checkbox" id="UM4IN801"><label for="UM4IN801">UM4IN801 - MLBDA</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M1 IMA</legend>
-                        <div><input type="checkbox" id="MU4IN600"><label for="MU4IN600">MU4IN600 - BIMA</label></div>
-                        <div><input type="checkbox" id="MU4IN601"><label for="MU4IN601">MU4IN601 - MAPSI</label></div>
-                        <div><input type="checkbox" id="MU4IN602"><label for="MU4IN602">MU4IN602 - IG</label></div>
+                        <div><input type="checkbox" id="UM4IN600"><label for="UM4IN600">UM4IN600 - BIMA</label></div>
+                        <div><input type="checkbox" id="UM4IN601"><label for="UM4IN601">UM4IN601 - MAPSI</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M1 IQ</legend>
-                        <div><input type="checkbox" id="MU4INQ01"><label for="MU4INQ01">MU4INQ01 - QK</label></div>
-                        <div><input type="checkbox" id="MU4INQ02"><label for="MU4INQ02">MU4INQ02 - QPh</label></div>
-                        <div><input type="checkbox" id="MU4INQ05"><label for="MU4INQ05">MU4INQ05 - QCLG</label></div>
-                        <div><input type="checkbox" id="MU4INQ51"><label for="MU4INQ51">MU4INQ51 - QIIntro</label></div>
+                        <div><input type="checkbox" id="UM4INQ01"><label for="UM4INQ01">UM4INQ01 - BQPh</label></div>
+                        <div><input type="checkbox" id="UM4INQ05"><label for="UM4INQ05">UM4INQ05 - QCQC</label></div>
+                        <div><input type="checkbox" id="UM4INQ02"><label for="UM4INQ02">UM4INQ02 - QPh4CS</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M1 RES</legend>
-                        <div><input type="checkbox" id="MU4IN001"><label for="MU4IN001">MU4IN001 - ARES</label></div>
-                        <div><input type="checkbox" id="MU4IN002"><label for="MU4IN002">MU4IN002 - RTEL</label></div>
-                        <div><input type="checkbox" id="MU4IN011"><label for="MU4IN011">MU4IN011 - ALGORES</label></div>
-                        <div><input type="checkbox" id="MU4IN012"><label for="MU4IN012">MU4IN012 - COMNUM</label></div>
-                        <div><input type="checkbox" id="MU4IN013"><label for="MU4IN013">MU4IN013 - MOB</label></div>
-                        <div><input type="checkbox" id="MU4IN014"><label for="MU4IN014">MU4IN014 - PROGRES</label></div>
-                        <div><input type="checkbox" id="MU4IN019"><label for="MU4IN019">MU4IN019 - CRV</label></div>
-                        <div><input type="checkbox" id="MU5IN001"><label for="MU5IN001">MU5IN001 - ARES</label></div>
+                        <div><input type="checkbox" id="UM4IN002"><label for="UM4IN002">UM4IN002 - RTEL</label></div>
+                        <div><input type="checkbox" id="UM4IN001"><label for="UM4IN001">UM4IN001 - ARES</label></div>
+                        <div><input type="checkbox" id="UM4IN014"><label for="UM4IN014">UM4IN014 - PROGRES</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M1 SAR</legend>
-                        <div><input type="checkbox" id="MU4IN400"><label for="MU4IN400">MU4IN400 - PSCR</label></div>
-                        <div><input type="checkbox" id="MU4IN401"><label for="MU4IN401">MU4IN401 - NOYAU</label></div>
-                        <div><input type="checkbox" id="MU4IN402"><label for="MU4IN402">MU4IN402 - PNL</label></div>
-                        <div><input type="checkbox" id="MU4IN403"><label for="MU4IN403">MU4IN403 - AR</label></div>
-                        <div><input type="checkbox" id="MU4IN404"><label for="MU4IN404">MU4IN404 - SRCS/SFTR</label></div>
-                        <div><input type="checkbox" id="MU4IN405"><label for="MU4IN405">MU4IN405 - SAS</label></div>
-                        <div><input type="checkbox" id="MU4IN407"><label for="MU4IN407">MU4IN407 - SFTR</label></div>
+                        <div><input type="checkbox" id="UM4IN400"><label for="UM4IN400">UM4IN400 - PSCR</label></div>
+                        <div><input type="checkbox" id="UM4IN401"><label for="UM4IN401">UM4IN401 - NOYAU</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M1 SESI</legend>
-                        <div><input type="checkbox" id="MU4EES05"><label for="MU4EES05">MU4EES05 - ESA</label></div>
-                        <div><input type="checkbox" id="MU4EES18"><label for="MU4EES18">MU4EES18 - ECFA</label></div>
-                        <div><input type="checkbox" id="MU4IN100"><label for="MU4IN100">MU4IN100 - ARCHI</label></div>
-                        <div><input type="checkbox" id="MU4IN101"><label for="MU4IN101">MU4IN101 - VLSI</label></div>
-                        <div><input type="checkbox" id="MU4IN103"><label for="MU4IN103">MU4IN103 - MOBJ</label></div>
-                        <div><input type="checkbox" id="MU4IN104"><label for="MU4IN104">MU4IN104 - SIGNAL</label></div>
-                        <div><input type="checkbox" id="MU4IN106"><label for="MU4IN106">MU4IN106 - MULTI</label></div>
-                        <div><input type="checkbox" id="MU4IN108"><label for="MU4IN108">MU4IN108 - FPGA</label></div>
-                        <div><input type="checkbox" id="MU4IN109"><label for="MU4IN109">MU4IN109 - IOC</label></div>
-                        <div><input type="checkbox" id="MU4IN112"><label for="MU4IN112">MU4IN112 - CGE</label></div>
+                        <div><input type="checkbox" id="UM4IN101"><label for="UM4IN101">UM4IN101 - VLSI1</label></div>
+                        <div><input type="checkbox" id="UM4IN104"><label for="UM4IN104">UM4IN104 - SIGNAL</label></div>
+                        <div><input type="checkbox" id="UM4IN103"><label for="UM4IN103">UM4IN103 - MOBJ</label></div>
+                        <div><input type="checkbox" id="UM4IN100"><label for="UM4IN100">UM4IN100 - ARCHI1</label></div>
+                        <div><input type="checkbox" id="UM4EES05"><label for="UM4EES05">UM4EES05 - ESA</label></div>
+                        <div><input type="checkbox" id="UM4EE101"><label for="UM4EE101">UM4EE101 - ESA</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
-                        <legend>M1 SFPN</legend>
-                        <div><input type="checkbox" id="MU4IN900"><label for="MU4IN900">MU4IN900 - COMPLEX</label></div>
-                        <div><input type="checkbox" id="MU4IN901"><label for="MU4IN901">MU4IN901 - MODEL</label></div>
-                        <div><input type="checkbox" id="MU4IN902"><label for="MU4IN902">MU4IN902 - FLAG</label></div>
-                        <div><input type="checkbox" id="MU4IN903"><label for="MU4IN903">MU4IN903 - PPAR</label></div>
-                        <div><input type="checkbox" id="MU4IN904"><label for="MU4IN904">MU4IN904 - ISEC</label></div>
-                        <div><input type="checkbox" id="MU4IN905"><label for="MU4IN905">MU4IN905 - SC</label></div>
-                        <div><input type="checkbox" id="MU4IN910"><label for="MU4IN910">MU4IN910 - ANUM</label></div>
-                        <div><input type="checkbox" id="MU4IN920"><label for="MU4IN920">MU4IN920 - ANUM</label></div>
+                        <legend>M1 CCA/SFPN</legend>
+                        <div><input type="checkbox" id="UM4IN901"><label for="UM4IN901">UM4IN901 - MODEL</label></div>
+                        <div><input type="checkbox" id="UM4IN900"><label for="UM4IN900">UM4IN900 - COMPLEX</label></div>
+                        <div><input type="checkbox" id="UM4IN903"><label for="UM4IN903">UM4IN903 - PPAR</label></div>
+                        <div><input type="checkbox" id="UM4IN905"><label for="UM4IN905">UM4IN905 - SC</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M1 STL</legend>
-                        <div><input type="checkbox" id="MU4IN500"><label for="MU4IN500">MU4IN500 - ALGAV</label></div>
-                        <div><input type="checkbox" id="MU4IN501"><label for="MU4IN501">MU4IN501 - DLP</label></div>
-                        <div><input type="checkbox" id="MU4IN502"><label for="MU4IN502">MU4IN502 - IL</label></div>
-                        <div><input type="checkbox" id="MU4IN503"><label for="MU4IN503">MU4IN503 - APS</label></div>
-                        <div><input type="checkbox" id="MU4IN504"><label for="MU4IN504">MU4IN504 - CA</label></div>
-                        <div><input type="checkbox" id="MU4IN505"><label for="MU4IN505">MU4IN505 - CPA</label></div>
-                        <div><input type="checkbox" id="MU4IN506"><label for="MU4IN506">MU4IN506 - CPS</label></div>
-                        <div><input type="checkbox" id="MU4IN507"><label for="MU4IN507">MU4IN507 - PC</label></div>
-                        <div><input type="checkbox" id="MU4IN510"><label for="MU4IN510">MU4IN510 - PAF</label></div>
-                        <div><input type="checkbox" id="MU4IN511"><label for="MU4IN511">MU4IN511 - OUV</label></div>
+                        <div><input type="checkbox" id="UM4IN500"><label for="UM4IN500">UM4IN500 - ALGAV</label></div>
+                        <div><input type="checkbox" id="UM4IN511"><label for="UM4IN511">UM4IN511 - OUV</label></div>
+                        <div><input type="checkbox" id="UM4IN509"><label for="UM4IN509">UM4IN509 - LS</label></div>
+                        <div><input type="checkbox" id="UM4IN501"><label for="UM4IN501">UM4IN501 - DLP</label></div>
                     </fieldset>
                 </div>
                 <div class="courses-list" id="m2">
                     <fieldset class="courses-category">
                         <legend>M2 ANDROIDE</legend>
-                        <div><input type="checkbox" id="MU5IN250"><label for="MU5IN250">MU5IN250 - COCOMA</label></div>
-                        <div><input type="checkbox" id="MU5IN251"><label for="MU5IN251">MU5IN251 - MAOA</label></div>
-                        <div><input type="checkbox" id="MU5IN252"><label for="MU5IN252">MU5IN252 - EVHI</label></div>
-                        <div><input type="checkbox" id="MU5IN253"><label for="MU5IN253">MU5IN253 - MADI</label></div>
-                        <div><input type="checkbox" id="MU5IN254"><label for="MU5IN254">MU5IN254 - MOSIMA</label></div>
-                        <div><input type="checkbox" id="MU5IN256"><label for="MU5IN256">MU5IN256 - MADMC</label></div>
-                        <div><input type="checkbox" id="MU5IN257"><label for="MU5IN257">MU5IN257 - AOTJ</label></div>
-                        <div><input type="checkbox" id="MU5IN258"><label for="MU5IN258">MU5IN258 - ISG</label></div>
-                        <div><input type="checkbox" id="MU5IN259"><label for="MU5IN259">MU5IN259 - IAR</label></div>
+                        <div><input type="checkbox" id="UM5IN254"><label for="UM5IN254">UM5IN254 - MOSIMA</label></div>
+                        <div><input type="checkbox" id="UM5IN250"><label for="UM5IN250">UM5IN250 - COCOMA</label></div>
+                        <div><input type="checkbox" id="UM5IN256"><label for="UM5IN256">UM5IN256 - MADMC</label></div>
+                        <div><input type="checkbox" id="UM5IN251"><label for="UM5IN251">UM5IN251 - MAOA</label></div>
+                        <div><input type="checkbox" id="UM5IN258"><label for="UM5IN258">UM5IN258 - AI</label></div>
+                        <div><input type="checkbox" id="UM5IN257"><label for="UM5IN257">UM5IN257 - AOTJ</label></div>
+                        <div><input type="checkbox" id="UM5IN253"><label for="UM5IN253">UM5IN253 - MADI</label></div>
+                        <div><input type="checkbox" id="UM5IN252"><label for="UM5IN252">UM5IN252 - HAII</label></div>
+                        <div><input type="checkbox" id="UM5IN259"><label for="UM5IN259">UM5IN259 - IAR</label></div>
+                        <div><input type="checkbox" id="UM4IN259"><label for="UM4IN259">UM4IN259 - IAR</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 BIM</legend>
-                        <div><input type="checkbox" id="MU5BM733"><label for="MU5BM733">MU5BM733 - GENOM</label></div>
-                        <div><input type="checkbox" id="MU5IN751"><label for="MU5IN751">MU5IN751 - PHYG</label></div>
-                        <div><input type="checkbox" id="MU5IN752"><label for="MU5IN752">MU5IN752 - GPOP</label></div>
-                        <div><input type="checkbox" id="MU5IN753"><label for="MU5IN753">MU5IN753 - SPLEX</label></div>
-                        <div><input type="checkbox" id="MU5IN754"><label for="MU5IN754">MU5IN754 - RESYS</label></div>
+                        <div><input type="checkbox" id="UM5IN752"><label for="UM5IN752">UM5IN752 - GPOP/GROP</label></div>
+                        <div><input type="checkbox" id="UM5IN755"><label for="UM5IN755">UM5IN755 - STRUCT</label></div>
                         <div><input type="checkbox" id="MU5IN755"><label for="MU5IN755">MU5IN755 - STRUCT</label></div>
-                        <div><input type="checkbox" id="MU5IN757"><label for="MU5IN757">MU5IN757 - MEET</label></div>
+                        <div><input type="checkbox" id="UM5IN751"><label for="UM5IN751">UM5IN751 - PHYG</label></div>
+                        <div><input type="checkbox" id="MU5IN751"><label for="MU5IN751">MU5IN751 - PHYG</label></div>
+                        <div><input type="checkbox" id="UM5IN754"><label for="UM5IN754">UM5IN754 - RESYS</label></div>
+                        <div><input type="checkbox" id="MU5IN754"><label for="MU5IN754">MU5IN754 - RESYS</label></div>
+                        <div><input type="checkbox" id="UM5IN753"><label for="UM5IN753">UM5IN753 - SPLEX</label></div>
+                        <div><input type="checkbox" id="MU5IN753"><label for="MU5IN753">MU5IN753 - SPLEX</label></div>
+                        <div><input type="checkbox" id="UM5BM733"><label for="UM5BM733">UM5BM733 - GENOM</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 DAC</legend>
+                        <div><input type="checkbox" id="UM5IN852"><label for="UM5IN852">UM5IN852 - LSDA</label></div>
+                        <div><input type="checkbox" id="UM5IN870"><label for="UM5IN870">UM5IN870 - GDC</label></div>
+                        <div><input type="checkbox" id="UM5IN873"><label for="UM5IN873">UM5IN873 - ADL</label></div>
+                        <div><input type="checkbox" id="UM5IN872"><label for="UM5IN872">UM5IN872 - RL</label></div>
+                        <div><input type="checkbox" id="UM5IN868"><label for="UM5IN868">UM5IN868 - XAI</label></div>
+                        <div><input type="checkbox" id="UM5IN863"><label for="UM5IN863">UM5IN863 - MEDS</label></div>
+                        <div><input type="checkbox" id="UM5IN871"><label for="UM5IN871">UM5IN871 - SACE</label></div>
+                        <div><input type="checkbox" id="UM5IN874"><label for="UM5IN874">UM5IN874 - LMM</label></div>
+                        <div><input type="checkbox" id="UM5IN861"><label for="UM5IN861">UM5IN861 - DEEP</label></div>
                         <div><input type="checkbox" id="MU5IN852"><label for="MU5IN852">MU5IN852 - BDLE</label></div>
-                        <div><input type="checkbox" id="MU5IN860"><label for="MU5IN860">MU5IN860 - LODAS</label></div>
-                        <div><input type="checkbox" id="MU5IN861"><label for="MU5IN861">MU5IN861 - AMAL</label></div>
                         <div><input type="checkbox" id="MU5IN862"><label for="MU5IN862">MU5IN862 - RLD</label></div>
-                        <div><input type="checkbox" id="MU5IN863"><label for="MU5IN863">MU5IN863 - TME/REDS</label></div>
-                        <div><input type="checkbox" id="MU5IN864"><label for="MU5IN864">MU5IN864 - XAI</label></div>
-                        <div><input type="checkbox" id="MU5IN868"><label for="MU5IN868">MU5IN868 - XAI</label></div>
-                        <div><input type="checkbox" id="MU5INSO8"><label for="MU5INSO8">MU5INSO8 - Soutenances</label></div>
+                        <div><input type="checkbox" id="MU5IN861"><label for="MU5IN861">MU5IN861 - AMAL</label></div>
+                        <div><input type="checkbox" id="MU5IN863"><label for="MU5IN863">MU5IN863 - REDS</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 IMA</legend>
-                        <div><input type="checkbox" id="MU5IN650"><label for="MU5IN650">MU5IN650 - TADI</label></div>
-                        <div><input type="checkbox" id="MU5IN651"><label for="MU5IN651">MU5IN651 - VISION</label></div>
+                        <div><input type="checkbox" id="UM5IN651"><label for="UM5IN651">UM5IN651 - VISION</label></div>
+                        <div><input type="checkbox" id="UM5IN655"><label for="UM5IN655">UM5IN655 - MAPIMED</label></div>
+                        <div><input type="checkbox" id="UM5IN656"><label for="UM5IN656">UM5IN656 - PRAT</label></div>
+                        <div><input type="checkbox" id="UM5IN650"><label for="UM5IN650">UM5IN650 - TADI</label></div>
                         <div><input type="checkbox" id="MU5IN652"><label for="MU5IN652">MU5IN652 - RDFIA</label></div>
-                        <div><input type="checkbox" id="MU5IN653"><label for="MU5IN653">MU5IN653 - IG</label></div>
-                        <div><input type="checkbox" id="MU5IN654"><label for="MU5IN654">MU5IN654 - BIOMED</label></div>
-                        <div><input type="checkbox" id="MU5IN655"><label for="MU5IN655">MU5IN655 - MAPIMED</label></div>
-                        <div><input type="checkbox" id="MU5IN656"><label for="MU5IN656">MU5IN656 - PRAT</label></div>
+                        <div><input type="checkbox" id="UM5IN652"><label for="UM5IN652">UM5IN652 - RDFIA</label></div>
+                        <div><input type="checkbox" id="UM5IN654"><label for="UM5IN654">UM5IN654 - BIOMED</label></div>
+                        <div><input type="checkbox" id="UM5IN653"><label for="UM5IN653">UM5IN653 - IG3DA</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 IQ</legend>
-                        <div><input type="checkbox" id="MU5INQ01"><label for="MU5INQ01">MU5INQ01 - QAlg</label></div>
+                        <div><input type="checkbox" id="UM5PYQ04"><label for="UM5PYQ04">UM5PYQ04 - PhQC</label></div>
+                        <div><input type="checkbox" id="UM5PYQ03"><label for="UM5PYQ03">UM5PYQ03 - QIT</label></div>
+                        <div><input type="checkbox" id="UM5INQ12"><label for="UM5INQ12">UM5INQ12 - AQCrypt</label></div>
                         <div><input type="checkbox" id="MU5INQ02"><label for="MU5INQ02">MU5INQ02 - QCrypt</label></div>
-                        <div><input type="checkbox" id="MU5INQ11"><label for="MU5INQ11">MU5INQ11 - AQAlg</label></div>
-                        <div><input type="checkbox" id="MU5INQ12"><label for="MU5INQ12">MU5INQ12 - AQCrypt</label></div>
-                        <div><input type="checkbox" id="MU5PYQ03"><label for="MU5PYQ03">MU5PYQ03 - QIT</label></div>
-                        <div><input type="checkbox" id="MU5PYQ04"><label for="MU5PYQ04">MU5PYQ04 - PhQC</label></div>
+                        <div><input type="checkbox" id="UM5INQ02"><label for="UM5INQ02">UM5INQ02 - QCrypt</label></div>
+                        <div><input type="checkbox" id="UM5INQ01"><label for="UM5INQ01">UM5INQ01 - QAlg</label></div>
+                        <div><input type="checkbox" id="UM5INQ11"><label for="UM5INQ11">UM5INQ11 - AQAlg</label></div>
+                        <div><input type="checkbox" id="MU5INQ01"><label for="MU5INQ01">MU5INQ01 - QAlg</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 RES</legend>
-                        <div><input type="checkbox" id="MU5IN050"><label for="MU5IN050">MU5IN050 - CELL</label></div>
-                        <div><input type="checkbox" id="MU5IN053"><label for="MU5IN053">MU5IN053 - IQOS/ITQOS</label></div>
-                        <div><input type="checkbox" id="MU5IN054"><label for="MU5IN054">MU5IN054 - MEPS</label></div>
-                        <div><input type="checkbox" id="MU5IN056"><label for="MU5IN056">MU5IN056 - NEVA/IOB</label></div>
+                        <div><input type="checkbox" id="MU5IN067"><label for="MU5IN067">MU5IN067 - GAN</label></div>
+                        <div><input type="checkbox" id="UM5IN067"><label for="UM5IN067">UM5IN067 - GAN</label></div>
                         <div><input type="checkbox" id="MU5IN059"><label for="MU5IN059">MU5IN059 - SECRES</label></div>
+                        <div><input type="checkbox" id="UM5IN059"><label for="UM5IN059">UM5IN059 - SECRES</label></div>
+                        <div><input type="checkbox" id="UM5IN053"><label for="UM5IN053">UM5IN053 - ITQoS</label></div>
+                        <div><input type="checkbox" id="MU5IN053"><label for="MU5IN053">MU5IN053 - ITQOS</label></div>
+                        <div><input type="checkbox" id="UM5IN051"><label for="UM5IN051">UM5IN051 - MADRE</label></div>
+                        <div><input type="checkbox" id="MU5IN054"><label for="MU5IN054">MU5IN054 - MEPS</label></div>
+                        <div><input type="checkbox" id="UM5IN054"><label for="UM5IN054">UM5IN054 - MEPS</label></div>
+                        <div><input type="checkbox" id="MU5IN056"><label for="MU5IN056">MU5IN056 - NEVA</label></div>
+                        <div><input type="checkbox" id="UM5IN056"><label for="UM5IN056">UM5IN056 - NOVA</label></div>
                         <div><input type="checkbox" id="MU5IN060"><label for="MU5IN060">MU5IN060 - IOB</label></div>
-                        <div><input type="checkbox" id="MU5IN063"><label for="MU5IN063">MU5IN063 - ANET</label></div>
-                        <div><input type="checkbox" id="MU5IN066"><label for="MU5IN066">MU5IN066 - NEVA/NETMET</label></div>
-                        <div><input type="checkbox" id="MU5IN075"><label for="MU5IN075">MU5IN075 - NAM</label></div>
-                        <div><input type="checkbox" id="MU5IN552"><label for="MU5IN552">MU5IN552 - DAAR</label></div>
+                        <div><input type="checkbox" id="UM5IN060"><label for="UM5IN060">UM5IN060 - IOB</label></div>
+                        <div><input type="checkbox" id="UM5IN063"><label for="UM5IN063">UM5IN063 - ANET</label></div>
+                        <div><input type="checkbox" id="UM5IN050"><label for="UM5IN050">UM5IN050 - CELL</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 SAR</legend>
-                        <div><input type="checkbox" id="MU5IN450"><label for="MU5IN450">MU5IN450 - ARA</label></div>
-                        <div><input type="checkbox" id="MU5IN451"><label for="MU5IN451">MU5IN451 - DATACLOUD</label></div>
-                        <div><input type="checkbox" id="MU5IN453"><label for="MU5IN453">MU5IN453 - NMV</label></div>
-                        <div><input type="checkbox" id="MU5IN455"><label for="MU5IN455">MU5IN455 - ASTRE</label></div>
-                        <div><input type="checkbox" id="MU5IN456"><label for="MU5IN456">MU5IN456 - DEVREP</label></div>
-                        <div><input type="checkbox" id="MU5IN457"><label for="MU5IN457">MU5IN457 - Examen</label></div>
+                        <div><input type="checkbox" id="UM5IN450"><label for="UM5IN450">UM5IN450 - ARA</label></div>
+                        <div><input type="checkbox" id="UM5IN453"><label for="UM5IN453">UM5IN453 - NMV</label></div>
+                        <div><input type="checkbox" id="UM5IN455"><label for="UM5IN455">UM5IN455 - ASTRE</label></div>
+                        <div><input type="checkbox" id="UM5IN451"><label for="UM5IN451">UM5IN451 - DATACLOUD</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 SESI</legend>
                         <div><input type="checkbox" id="MU5IN150"><label for="MU5IN150">MU5IN150 - MASSOC</label></div>
-                        <div><input type="checkbox" id="MU5IN156"><label for="MU5IN156">MU5IN156 - PBD</label></div>
-                        <div><input type="checkbox" id="MU5IN159"><label for="MU5IN159">MU5IN159 - MOCCA</label></div>
+                        <div><input type="checkbox" id="UM5IN150"><label for="UM5IN150">UM5IN150 - MASSOC</label></div>
+                        <div><input type="checkbox" id="UM5IN156"><label for="UM5IN156">UM5IN156 - PBD</label></div>
                         <div><input type="checkbox" id="MU5IN160"><label for="MU5IN160">MU5IN160 - PROG</label></div>
-                        <div><input type="checkbox" id="MU5IN162"><label for="MU5IN162">MU5IN162 - SMC</label></div>
-                        <div><input type="checkbox" id="MU5IN164"><label for="MU5IN164">MU5IN164 - COCCA</label></div>
-                        <div><input type="checkbox" id="MU5IN165"><label for="MU5IN165">MU5IN165 - IMSE</label></div>
+                        <div><input type="checkbox" id="UM5IN161"><label for="UM5IN161">UM5IN161 - DSP</label></div>
+                        <div><input type="checkbox" id="UM5IN162"><label for="UM5IN162">UM5IN162 - SMC</label></div>
                         <div><input type="checkbox" id="MU5IN166"><label for="MU5IN166">MU5IN166 - HOTOP</label></div>
+                        <div><input type="checkbox" id="UM5IN166"><label for="UM5IN166">UM5IN166 - HOTOP</label></div>
+                        <div><input type="checkbox" id="UM5IN159"><label for="UM5IN159">UM5IN159 - MOCCA</label></div>
+                        <div><input type="checkbox" id="UM5IN164"><label for="UM5IN164">UM5IN164 - COCCA</label></div>
+                        <div><input type="checkbox" id="UM5IN160"><label for="UM5IN160">UM5IN160 - PACC</label></div>
+                        <div><input type="checkbox" id="UM5IN165"><label for="UM5IN165">UM5IN165 - IMSE</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 SFPN</legend>
-                        <div><input type="checkbox" id="MU5IN950"><label for="MU5IN950">MU5IN950 - AFAE</label></div>
+                        <div><input type="checkbox" id="UM5IN952"><label for="UM5IN952">UM5IN952 - HPCA</label></div>
+                        <div><input type="checkbox" id="UM5IN951"><label for="UM5IN951">UM5IN951 - CRYPTA</label></div>
                         <div><input type="checkbox" id="MU5IN951"><label for="MU5IN951">MU5IN951 - CRYPTA</label></div>
-                        <div><input type="checkbox" id="MU5IN952"><label for="MU5IN952">MU5IN952 - HPCA</label></div>
-                        <div><input type="checkbox" id="MU5IN953"><label for="MU5IN953">MU5IN953 - POSSO</label></div>
+                        <div><input type="checkbox" id="UM5IN954"><label for="UM5IN954">UM5IN954 - SCA</label></div>
                         <div><input type="checkbox" id="MU5IN954"><label for="MU5IN954">MU5IN954 - SCA</label></div>
+                        <div><input type="checkbox" id="UM5IN953"><label for="UM5IN953">UM5IN953 - POSSO</label></div>
+                        <div><input type="checkbox" id="MU5IN953"><label for="MU5IN953">MU5IN953 - POSSO</label></div>
+                        <div><input type="checkbox" id="UM5IN950"><label for="UM5IN950">UM5IN950 - AFAE</label></div>
+                        <div><input type="checkbox" id="MU5IN950"><label for="MU5IN950">MU5IN950 - AFAE</label></div>
+
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 STL</legend>
-                        <div><input type="checkbox" id="MU5IN550"><label for="MU5IN550">MU5IN550 - AAGA</label></div>
-                        <div><input type="checkbox" id="MU5IN551"><label for="MU5IN551">MU5IN551 - ALASCA</label></div>
+                        <div><input type="checkbox" id="UM5IN555"><label for="UM5IN555">UM5IN555 - TAS</label></div>
+                        <div><input type="checkbox" id="UM5IN556"><label for="UM5IN556">UM5IN556 - GRAPA</label></div>
+                        <div><input type="checkbox" id="UM5IN552"><label for="UM5IN552">UM5IN552 - DAAR</label></div>
                         <div><input type="checkbox" id="MU5IN552"><label for="MU5IN552">MU5IN552 - DAAR</label></div>
-                        <div><input type="checkbox" id="MU5IN553"><label for="MU5IN553">MU5IN553 - PPC</label></div>
-                        <div><input type="checkbox" id="MU5IN554"><label for="MU5IN554">MU5IN554 - SVP</label></div>
-                        <div><input type="checkbox" id="MU5IN555"><label for="MU5IN555">MU5IN555 - TAS</label></div>
-                        <div><input type="checkbox" id="MU5IN556"><label for="MU5IN556">MU5IN556 - GRAPA</label></div>
-                        <div><input type="checkbox" id="MU5IN558"><label for="MU5IN558">MU5IN558 - GPSTL</label></div>
-                        <div><input type="checkbox" id="MU5IN559"><label for="MU5IN559">MU5IN559 - PISTL</label></div>
-                        <div><input type="checkbox" id="MU5IN562"><label for="MU5IN562">MU5IN562 - TPEA</label></div>
+                        <div><input type="checkbox" id="UM5IN562"><label for="UM5IN562">UM5IN562 - TPEA</label></div>
+                        <div><input type="checkbox" id="UM5IN554"><label for="UM5IN554">UM5IN554 - SVP</label></div>
+                        <div><input type="checkbox" id="UM5IN551"><label for="UM5IN551">UM5IN551 - ALASCA</label></div>
+                        <div><input type="checkbox" id="UM5IN558"><label for="UM5IN558">UM5IN558 - GPSTL</label></div>
+                        <div><input type="checkbox" id="UM5IN550"><label for="UM5IN550">UM5IN550 - AAGA</label></div>
+                        <div><input type="checkbox" id="UM5IN559"><label for="UM5IN559">UM5IN559 - PISTL</label></div>
+                        <div><input type="checkbox" id="UM5IN553"><label for="UM5IN553">UM5IN553 - PPC</label></div>
                     </fieldset>
                 </div>
             </fieldset>

@@ -10,11 +10,11 @@ class DatabaseIndexer {
     public static index: { [ key: string ]: string } = {};
 
     public static async init() {
-	/**
-	 * Loads calendars from the distant server or falls back on local
-	 * files if files are fresh or if the server is down. Requires
-     * server for first DB population.
-	 */
+        /**
+         * Loads calendars from the distant server or falls back on local
+         * files if files are fresh or if the server is down. Requires
+         * server for first DB population.
+         */
 
         await this.repopulate();
 
@@ -57,7 +57,7 @@ class DatabaseIndexer {
                 const processed = await this.processCalendar(data, endpoint.name)
 
                 // Only write processed data (don't keep the original, it has tons of obsolete events)
-                fs.writeFileSync(filepath, processed);
+                fs.writeFileSync(filepath, processed, { encoding: "utf8" });
 
                 process.stdout.write(`\rSaved calendar for ${endpoint.name} (${index + 1}/${endpoints.length}).      `);
             }
@@ -107,9 +107,9 @@ class DatabaseIndexer {
             try {
                 const match = event.getFirstPropertyValue("summary").match(config.regexCourseCode);
 
-                // If we found a code and the course is not English class (don't index English classes)
-                if (match && !IsCourseEnglishClass(match[1]))
-                    this.index[match[1]] = name;
+                // // If we found a code and the course is not English class (don't index English classes)
+                // if (match && !IsCourseEnglishClass(match[1]))
+                this.index[match[1]] = name;
 
             } catch (err) {
                 console.error(`Failed to get getFirstPropertyValue 'summary' for event ${event}\n => ${err}`);
