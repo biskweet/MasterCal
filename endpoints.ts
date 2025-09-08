@@ -89,16 +89,16 @@ const endpoints = [
         route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M2_SFPN/"
     },
 
-    // These two calendars create collisions with other courses so they get kicked out
-    // // SFPN-MSI apprenticeship
-    // {
-    //     name: "M1_SFPN-AFTI",
-    //     route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M1_SFPN-AFTI/"
-    // },
-    // {
-    //     name: "M2_SFPN-AFTI",
-    //     route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M2_SFPN-AFTI/"
-    // },
+    // (ignore:) These two calendars create collisions with other courses so they get kicked out
+    // SFPN-MSI apprenticeship
+    {
+        name: "M1_SFPN-AFTI",
+        route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M1_SFPN-AFTI/"
+    },
+    {
+        name: "M2_SFPN-AFTI",
+        route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/SFPN/M2_SFPN-AFTI/"
+    },
 
     {
         name: "M1_STL",
