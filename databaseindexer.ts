@@ -109,7 +109,8 @@ class DatabaseIndexer {
 
                 // // If we found a code and the course is not English class (don't index English classes)
                 // if (match && !IsCourseEnglishClass(match[1]))
-                this.index[match[1]] = name;
+                if (match)
+                    this.index[match[1]] = name;
 
             } catch (err) {
                 console.error(`Failed to get getFirstPropertyValue 'summary' for event ${event}\n => ${err}`);
