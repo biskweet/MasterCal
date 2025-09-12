@@ -13,8 +13,8 @@ class TinyLogger {
     public static log(logEntry: string) {
         const now = new Date();
 
-        const l = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ` +
-                  `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} | ` +
+        const l = `${now.toISOString().slice(0, 10)} ` +
+			      `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} | ` +
                   logEntry;
 
 	    console.log(l);
