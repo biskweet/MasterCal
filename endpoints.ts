@@ -108,6 +108,10 @@ const endpoints = [
         name: "M2_STL",
         route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/STL/M2_STL/"
     },
+    {
+        name: "M2_STL-INSTA",
+        route: "https://cal.ufr-info-p6.jussieu.fr/caldav.php/STL/M2_STL-INSTA/"
+    },
 ];
 
 export { endpoints };
