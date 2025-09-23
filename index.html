@@ -132,15 +132,12 @@
 
             .result-link-container label {
                 font-size: 24px;
+                display: block;
+                margin-bottom: .4em;
             }
 
             fieldset:disabled {
                 color: #939393;
-            }
-
-            .result-link-container label {
-                display: block;
-                margin-bottom: .4em;
             }
 
             .result-link-container label:after {
@@ -151,7 +148,6 @@
                 display: block;
                 font-size: 16px;
             }
-
 
             .icon img {
                 position: fixed;
@@ -176,8 +172,6 @@
                     padding-bottom: 0.2em;
                 }
 
-
-
                 .table-container, .result-link-container {
                     max-width: 95vw;
                 }
@@ -195,9 +189,27 @@
             }
     </style>
     <script lang="js">
-        const baseUrl = `https://${ window.location.hostname }/api?`
-        const updateLink = () => {
+        const baseUrl = `${ window.location.origin }/api?`;
+
+        const alternances = [
+            "M1_RES-EIT-Digital",
+            "M2_RES-EIT-Digital",
+            "M1_RES-ITESCIA",
+            "M2_RES-ITESCIA",
+            "M2_RES-INSTA",
+            "M1_SFPN-AFTI",
+            "M2_SFPN-AFTI",
+            "M2_STL-INSTA"
+        ];
+
+        const updatePage = () => {
             const specialty = document.querySelector("input[type=radio]:checked");
+
+            let shouldUpdateCourses = !alternances.includes(specialty.id);
+
+            document.querySelector(".courses-fieldset").style.display = shouldUpdateCourses ? "flex" : "none";
+            document.querySelector(".result-link-container").style.maxWidth = shouldUpdateCourses ? "45%" : "75%";
+
             document.querySelector("fieldset.courses-fieldset").disabled = !specialty;
 
             // Will hold the link
@@ -205,13 +217,15 @@
 
             resultInput.value = baseUrl + "specialty=" + specialty.id;
 
-            const checkedCourses = document.querySelectorAll("input[type=checkbox]:checked");
+            if (shouldUpdateCourses) {
+                const checkedCourses = document.querySelectorAll("input[type=checkbox]:checked");
 
-            if (checkedCourses.length > 8)
-                return resultInput.value = "Trop d'UE sélectionnées !";
+                if (checkedCourses.length > 15)
+                    return resultInput.value = "Trop d'UE sélectionnées !";
 
-            else if (checkedCourses.length > 0)
-                resultInput.value += '&courses=' + Array.from(checkedCourses).map(checkbox => checkbox.id).join(',');
+                else if (checkedCourses.length > 0)
+                    resultInput.value += '&courses=' + Array.from(checkedCourses).map(checkbox => checkbox.id).join(',');
+            }
 
             resultInput.style.height = resultInput.scrollHeight + "px";
 
@@ -233,7 +247,7 @@
 
             try {
                 const form = document.getElementById("main-form");
-                form.addEventListener("change", updateLink);
+                form.addEventListener("change", updatePage);
             } catch {
                 alert("Can't find form!");
             }
@@ -244,6 +258,7 @@
     <div class="title-container">
         <h1>Get your URL</h1>
     </div>
+
     <div class="table-container">
         <form id="main-form">
             <fieldset class="specialty-list">
@@ -259,6 +274,10 @@
                 <div>
                     <input type="radio" name="specialty" id="M1_BIM">
                     <label for="M1_BIM">M1 BIM</label>
+                </div>
+                <div>
+                    <input type="radio" name="specialty" id="M1_SFPN">
+                    <label for="M1_SFPN">M1 CCA/SFPN</label>
                 </div>
                 <div>
                     <input type="radio" name="specialty" id="M1_IMA">
@@ -277,16 +296,20 @@
                     <label for="M1_RES">M1 RES</label>
                 </div>
                 <div>
+                    <input type="radio" name="specialty" id="M1_RES-EIT-Digital">
+                    <label for="M1_RES-EIT-Digital">M1 RES EIT Digital</label>
+                </div>
+                <div>
+                    <input type="radio" name="specialty" id="M1_RES-ITESCIA">
+                    <label for="M1_RES-ITESCIA">M1 RES ITESCIA</label>
+                </div>
+                <div>
                     <input type="radio" name="specialty" id="M1_SAR">
                     <label for="M1_SAR">M1 SAR</label>
                 </div>
                 <div>
                     <input type="radio" name="specialty" id="M1_SESI">
                     <label for="M1_SESI">M1 SESI</label>
-                </div>
-                <div>
-                    <input type="radio" name="specialty" id="M1_SFPN">
-                    <label for="M1_SFPN">M1 CCA/SFPN</label>
                 </div>
                 <div>
                     <input type="radio" name="specialty" id="M1_SFPN-AFTI">
@@ -325,6 +348,18 @@
                     <label for="M2_RES">M2 RES</label>
                 </div>
                 <div>
+                    <input type="radio" name="specialty" id="M2_RES-EIT-Digital">
+                    <label for="M2_RES-EIT-Digital">M2 RES EIT Digital</label>
+                </div>
+                <div>
+                    <input type="radio" name="specialty" id="M2_RES-ITESCIA">
+                    <label for="M2_RES-ITESCIA">M2 RES ITESCIA</label>
+                </div>
+                <div>
+                    <input type="radio" name="specialty" id="M2_RES-INSTA">
+                    <label for="M2_RES-INSTA">M2 RES INSTA</label>
+                </div>
+                <div>
                     <input type="radio" name="specialty" id="M2_SAR">
                     <label for="M2_SAR">M2 SAR</label>
                 </div>
@@ -340,9 +375,13 @@
                     <input type="radio" name="specialty" id="M2_STL">
                     <label for="M2_STL">M2 STL</label>
                 </div>
+                <div>
+                    <input type="radio" name="specialty" id="M2_STL-INSTA">
+                    <label for="M2_STL-INSTA">M2 STL INSTA</label>
+                </div>
             </fieldset>
             <fieldset class="courses-fieldset" disabled>
-                <legend>Pick your courses (8 max)</legend>
+                <legend>Pick your courses (15 max)</legend>
                 <div class="courses-list" id="m1">
                     <fieldset class="courses-category">
                         <legend>M1 AI2D/ANDROIDE</legend>
@@ -396,12 +435,6 @@
                         <div><input type="checkbox" id="UM4IN100"><label for="UM4IN100">UM4IN100 - ARCHI1</label></div>
                         <div><input type="checkbox" id="UM4EES05"><label for="UM4EES05">UM4EES05 - ESA</label></div>
                         <div><input type="checkbox" id="UM4EE101"><label for="UM4EE101">UM4EE101 - ESA</label></div>
-                    </fieldset>
-                    <fieldset class="courses-category">
-                        <legend>M1 SSI-ALT/SFPN-ALT</legend>
-                        <div><input type="checkbox" id="UM4IN905"><label for="UM4IN905">UM4IN905 - SC</label></div>
-                        <div><input type="checkbox" id="UM4IN930"><label for="UM4IN930">UM4IN930 - Pentest</label></div>
-                        <div><input type="checkbox" id="UM4IN931"><label for="UM4IN931">UM4IN931 - Ethical</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M1 STL</legend>
@@ -527,10 +560,6 @@
                         <div><input type="checkbox" id="UM5IN164"><label for="UM5IN164">UM5IN164 - COCCA</label></div>
                         <div><input type="checkbox" id="UM5IN160"><label for="UM5IN160">UM5IN160 - PACC</label></div>
                         <div><input type="checkbox" id="UM5IN165"><label for="UM5IN165">UM5IN165 - IMSE</label></div>
-                    </fieldset>
-                    <fieldset class="courses-category">
-                        <legend>M2 SSI-ALT/SFPN-ALT</legend>
-                        <div><input type="checkbox" id="MU5IN974"><label for="MU5IN974">MU5IN974 - LACRYMO</label></div>
                     </fieldset>
                     <fieldset class="courses-category">
                         <legend>M2 STL</legend>

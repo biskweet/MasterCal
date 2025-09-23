@@ -1,6 +1,6 @@
 const IsCourseOIP = (code: string) => {
     return (
-        code.endsWith("OIP")
+        code.toUpperCase().includes("OIP")
     );
 }
 

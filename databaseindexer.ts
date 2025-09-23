@@ -2,7 +2,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { endpoints } from "./endpoints";
 import { config } from "./config";
-import { IsCourseEnglishClass } from "./utils/IsCourseEnglishClass";
+import { Endpoint } from "./interfaces";
 
 const ICAL = require("ical.js")
 
@@ -43,7 +43,7 @@ class DatabaseIndexer {
 
                     // Use local version of files that are considered fresh
                     const data = fs.readFileSync(filepath, { encoding: "utf8" });
-                    await this.processCalendar(data, endpoint.name);
+                    await this.processCalendar(data, endpoint);
 
             } else {
 
@@ -54,7 +54,7 @@ class DatabaseIndexer {
                 }).then(response => response.text());
 
                 // Now we index each course and link it to the newly downloaded file for faster retrieving
-                const processed = await this.processCalendar(data, endpoint.name)
+                const processed = await this.processCalendar(data, endpoint)
 
                 // Only write processed data (don't keep the original, it has tons of obsolete events)
                 fs.writeFileSync(filepath, processed, { encoding: "utf8" });
@@ -66,7 +66,7 @@ class DatabaseIndexer {
         process.stdout.write('\n');
     }
 
-    private static async processCalendar(ics: string, name: string) : Promise<string> {
+    private static async processCalendar(ics: string, endpoint: Endpoint) : Promise<string> {
         /**
          * Processes a calendar by indexing each course to the corresponding file
          * (eg: MU4IN900 -> M1_SFPN). It also creates a lighter calendar only containing
@@ -107,10 +107,9 @@ class DatabaseIndexer {
             try {
                 const match = event.getFirstPropertyValue("summary").match(config.regexCourseCode);
 
-                // // If we found a code and the course is not English class (don't index English classes)
-                // if (match && !IsCourseEnglishClass(match[1]))
-                if (match)
-                    this.index[match[1]] = name;
+                // If we found a code and the specialty is not tagged as an Alternance
+                if (match && !endpoint.isAlternance)
+                    this.index[match[1]] = endpoint.name;
 
             } catch (err) {
                 console.error(`Failed to get getFirstPropertyValue 'summary' for event ${event}\n => ${err}`);
