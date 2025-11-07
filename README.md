@@ -1,5 +1,5 @@
 # MasterCal
-MasterCal serves personalized iCalendars for CS Masters at Sorbonne University, directly in yout Google Calendar.
+MasterCal serves personalized iCalendars for CS Masters at Sorbonne University, directly in Google Calendar or your own calendar app.
 
 ## Setup
 1. Go to [https://mastercal.alias-asso.fr](https://mastercal.alias-asso.fr)
@@ -17,8 +17,8 @@ MasterCal serves personalized iCalendars for CS Masters at Sorbonne University, 
      <img src="./img/screenshot2.png" width="500px" height="auto">
    </div>
 
-8. Fill in the link you copied and add the calendar. It's going to load for a bit because it's downloading all events
-9. (Optional) You can customize the name and color of your calendar
+8. Fill in the link you copied and add the calendar. It is going to load for a bit because your app is downloading all the events
+9. (Optional: You can customize the name and color of your calendar)
 11. ⚠️ Now head to your Google Calendar phone app and open settings
 12. ⚠️ Under the Google account you used, click _Show more_. Your new calendar is hidden there. Press the calendar item you just created
 13. ⚠️ Finally, press _Sync_ to enable syncing on your phone. Voilà!
@@ -28,4 +28,4 @@ MasterCal serves personalized iCalendars for CS Masters at Sorbonne University, 
      <img src="./img/screenshot4.png" width="300px" height="auto">
    </div>
 
-If you have any comment or if you find a mistake somewhere (wrong course code, duplicate, etc.) please send me a message on Discord! The @ is my username. 
+If you have any comment or if you find a mistake somewhere (wrong course code, duplicate, etc.) please send me a message on Discord! The @ is my Github username. 
