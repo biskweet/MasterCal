@@ -1,7 +1,8 @@
-const IsCourseEnglishClass = (code: string) => {
+const IsCourseEnglishClass = (code: string, fulltitle: string) => {
     return (
-        code.slice(3, 5).toUpperCase() == 'LV' ||
-        code.slice(3, 6) == "XAN"
+        code.toLowerCase().slice(3, 5).toUpperCase() == 'lv' ||
+        code.toLowerCase().slice(3, 6) == "xan"              ||
+        fulltitle.toLowerCase().includes("anglais")
     );
 }
 

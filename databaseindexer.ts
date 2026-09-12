@@ -6,6 +6,7 @@ import { Endpoint } from "./interfaces";
 
 const ICAL = require("ical.js")
 
+
 class DatabaseIndexer {
     public static index: { [ key: string ]: string } = {};
 
@@ -20,8 +21,8 @@ class DatabaseIndexer {
 
         setInterval(() => {
             this.repopulate().catch((err) =>
-	            process.stdout.write(`Unable to reach the server (${err})`)
-	        );
+                process.stdout.write(`Unable to reach the server (${err})`)
+            );
         }, config.databaseUpdateDelay);
     }
 
@@ -41,9 +42,9 @@ class DatabaseIndexer {
             // If file exists and is less than `databaseUpdateDelay` milliseconds old
             if (fs.existsSync(filepath) && (Date.now() - fs.statSync(filepath).mtimeMs) < (config.databaseUpdateDelay / 2)) {
 
-                    // Use local version of files that are considered fresh
-                    const data = fs.readFileSync(filepath, { encoding: "utf8" });
-                    await this.processCalendar(data, endpoint);
+                // Use local version of files that are considered fresh
+                const data = fs.readFileSync(filepath, { encoding: "utf8" });
+                await this.processCalendar(data, endpoint);
 
             } else {
 
@@ -100,16 +101,17 @@ class DatabaseIndexer {
             event.removeAllProperties("exdate");
 
             filteredCal.addSubcomponent(event);
-	    });
+        });
 
         // Indexing each course code
         relevantEvents.forEach((event: any) => {
             try {
-                const match = event.getFirstPropertyValue("summary").match(config.regexCourseCode);
+                const summary : string = event.getFirstPropertyValue("summary");
+                const match = summary.match(config.regexCourseCode);
 
                 // If we found a code and the specialty is not tagged as an Alternance
                 if (match && !endpoint.isAlternance)
-                    this.index[match[1]] = endpoint.name;
+                    this.index[match[1].toUpperCase()] = endpoint.name;
 
             } catch (err) {
                 console.error(`Failed to get getFirstPropertyValue 'summary' for event ${event}\n => ${err}`);

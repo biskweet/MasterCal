@@ -20,5 +20,5 @@ app.use("/",    MasterCalMainPageController);
 app.use("/api", MasterCalAPIController);
 
 DatabaseIndexer.init().then(() => {
-	app.listen(config.PORT, () => console.log(`Running api on http://${ config.HOST }:${ config.PORT }/`));
+    app.listen(config.PORT, () => console.log(`Running api on http://${ config.HOST }:${ config.PORT }/`));
 });
